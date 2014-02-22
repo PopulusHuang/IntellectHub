@@ -1,6 +1,26 @@
-<form action="cgi-bin/login.cgi" method="POST">
-   <div><label>Name:<input type="text" name="name" ></label></div>
-   <div><label>Passwd:<input type="text" name="passwd" ></label></div>
-   <div><input type="submit" value="Login" /></div>
-</form>
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8"><title>登录</title>
+<!--using an external CSS stylesheet -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!--background-color: #E9EEF0 -->
+	</head>
 
+<body>
+<div class="wrapper">
+<form action="cgi-bin/login.cgi" method="post">
+  <div class="loginBox">
+  <div class="loginBoxCenter">
+  <p><label for="username_label">用户名：</label></p>
+  <p><input id="user" name="name" class="loginInput" autofocus="autofocus" required="required" autocomplete="off" placeholder="请输入用户名" value="" type="text"></p>
+  <p><label for="password_label">密 码：</label><a class="forgetLink" href="#">忘记密
+码?</a></p>
+  <p><input id="password" name="passwd" class="loginInput" required="required" placeholder="请输入密码" value="" type="password"></p>
+  </div>
+  <div class="loginBoxButtons"> <input id="remember" name="remember" type="checkbox"> <label for="remember">记住登录状态</label> <button class="loginBtn">登录</button> </div>
+  </div>
+</form>
+</div>
+
+</body></html>
