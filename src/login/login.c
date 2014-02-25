@@ -3,16 +3,37 @@
 #include "account.h"
 #include <string.h>
 #include <stdlib.h>
+void show_MainPage()
+{
+	/* goto the index.html page */
+	//printf("<meta http-equiv=\"refresh\" content=\"0;url=../index.html\">");
+	printf("<script> location.href=\"../index.html\"; </script>");
+}
+void show_UserErr()
+{
+	printf("<script>alert(\"This user is not exist!\")</script>\n");
+	/* back to the login page */
+	printf("<script> location.href=\"../login.html\"; </script>");
+}
+void show_PasswdErr()
+{
+	printf("<script>alert(\"Password error!\")</script>\n");
+	printf("<script> location.href=\"../login.html\"; </script>");
+}
+void show_DefaultErr()
+{
+	printf("<script>alert(\"Forbid login!\")</script>\n");
+	printf("<script> location.href=\"../login.html\"; </script>");
+}
 int cgiMain() {
 	ACCOUNT user;
 	int n;
 	int ret;
     cgiHeaderContentType("text/html");
-    fprintf(cgiOut, "<HTML><HEAD>\n");
-    fprintf(cgiOut, "<TITLE>My CGI</TITLE></HEAD>\n");
-    fprintf(cgiOut, "<BODY>");
     cgiFormString("name",user.name, 241);
     cgiFormString("passwd",user.passwd, 241);
+    fprintf(cgiOut, "<HTML><HEAD>\n");
+    fprintf(cgiOut, "<TITLE>Loading...</TITLE>");
 #if 1
  /* open database */ 
   sqlite3 *db;
@@ -26,19 +47,19 @@ int cgiMain() {
 	n = account_verify(db,user.name,user.passwd); 
 	switch(n)
 	{
-		case USER_OK: printf("<H1>Login Succeed!</H1>\n");
-           			fprintf(cgiOut, "<H1>Hello,%s!</H1>",user.name);
-					break;
-		case USER_ERR: fprintf(cgiOut,
-							  "<H1>%s is not exist!</H1>",user.name);
-					   break;
-		case PASSWD_ERR: printf("<H1>Password error!</H1>");
-						 break;
-		default :printf("<H1>login failure!</H1>");break;
+		case USER_OK:		show_MainPage(); 
+							break;
+		case USER_ERR: 		show_UserErr(); 
+					   		break;
+		case PASSWD_ERR:	show_PasswdErr(); 
+						 	break;
+		default :			show_DefaultErr();
+				 			break;
 	}
 #endif
-    fprintf(cgiOut, "</BODY>\n");
-    fprintf(cgiOut, "</HTML>\n");
+    fprintf(cgiOut, "</HEAD><BODY>\n");
+    fprintf(cgiOut, "</BODY></HTML>\n");
 	sqlite3_close(db);
     return 0;
 }
+

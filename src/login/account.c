@@ -34,7 +34,6 @@ int account_verify(sqlite3 *db,char *username,char *passwd)
 				return USER_OK;
 			}
 		}
-				printf("input passwd is %s!\n",passwd);
 				return PASSWD_ERR;
 	}
 	sqlite3_free_table(aResult);

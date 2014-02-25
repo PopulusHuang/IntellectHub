@@ -1,26 +1,66 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
+<!DOCTYPE html >
+
+<html >
 <head>
-<meta charset="UTF-8"><title>登录</title>
-<!--using an external CSS stylesheet -->
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<!--background-color: #E9EEF0 -->
-	</head>
+<title>Intellect Hub首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/arial.js"></script>
+<script type="text/javascript" src="js/cuf_run.js"></script>
+<!-- CuFon ends -->
+</head>
 
 <body>
-<div class="wrapper">
-<form action="cgi-bin/login.cgi" method="post">
-  <div class="loginBox">
-  <div class="loginBoxCenter">
-  <p><label for="username_label">用户名：</label></p>
-  <p><input id="user" name="name" class="loginInput" autofocus="autofocus" required="required" autocomplete="off" placeholder="请输入用户名" value="" type="text"></p>
-  <p><label for="password_label">密 码：</label><a class="forgetLink" href="#">忘记密
-码?</a></p>
-  <p><input id="password" name="passwd" class="loginInput" required="required" placeholder="请输入密码" value="" type="password"></p>
+<div class="main">
+<!--******************header*****************-->
+  <div class="header">
+    <div class="logo">
+      <h1><a href="index.html"><span>Intellect</span>Hub</a></h1>
+    </div>
+<!--*****************menu navigation***********--> 
+    <div class="menu_nav">
+      <ul>
+        <li class="active"><a href=".html">首页</a></li>
+        <li><a href="support.html">定时任务</a></li>
+        <li><a href="about.html">温度控制</a></li>
+        <li><a href="blog.html">设备管理</a></li>
+        <li><a href="contact.html">网络管理</a></li>
+      </ul>
+    </div>
+    <div class="clr"></div>
+    <div class="hbg"><img src="images/header_images.jpg" width="670" height="298" alt="header images" class="fr" />
+      <div class="info fl">
+        <h3>In Touch</h3>
+        <h4>With Tomorrow</h4>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
   </div>
-  <div class="loginBoxButtons"> <input id="remember" name="remember" type="checkbox"> <label for="remember">记住登录状态</label> <button class="loginBtn">登录</button> </div>
-  </div>
-</form>
-</div>
+<!--**********main content***************-->
 
-</body></html>
+<!--****************side bar******************-->
+      <div class="gadget">
+        <h2 class="star"><span>Sidebar</span> Menu</h2>
+        <div class="clr"></div>
+        <ul class="sb_menu">
+          <li class="active"><a href="#">个人中心</a></li>
+          <li><a href="#">帮助</a></li>
+          <li><a href="#">Style Demo</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Archives</a></li>
+          <!--li><a href="#" title="Website Templates">Web Templates</a></li-->
+        </ul>
+      </div>
+  <div class="footer">
+    <div class="footer_resize">
+      <p class="lf">© Copyright <a href="#">MyWebSite</a>.</p>
+      <!--p class="rf">Collect from <a href="http://www.cssmoban.com/" title="网站模板" target="_blank">网站模板</a></p-->
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
