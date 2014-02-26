@@ -3,10 +3,18 @@
 #include "account.h"
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
+void setCookie()
+{
+	time_t timep;
+	char  value[20];
+	bzero(value,sizeof(value));
+	time(&timep);
+	sprintf(value,"%d",timep);
+	printf("Set-Cookie:FUNNY=%d;path=/\r\n",value);
+}
 void show_MainPage()
 {
-	/* goto the index.html page */
-	//printf("<meta http-equiv=\"refresh\" content=\"0;url=../index.html\">");
 	printf("<script> location.href=\"../index.html\"; </script>");
 }
 void show_UserErr()
@@ -29,6 +37,7 @@ int cgiMain() {
 	ACCOUNT user;
 	int n;
 	int ret;
+	setCookie();
     cgiHeaderContentType("text/html");
     cgiFormString("name",user.name, 241);
     cgiFormString("passwd",user.passwd, 241);
