@@ -1,65 +1,74 @@
-<!DOCTYPE html >
-
-<html >
+<!DOCTYPE html>
+<html>
 <head>
-<title>Intellect Hub首页</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="css/main.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/cookie.js"></script>
-<script> checkCookie()</script>
+	<title>Intellect Hub</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/cookie.js"></script>
+	<script> checkCookie()</script>
 </head>
 
 <body>
-
-<noscript><iframe src="*.html"></iframe></noscript> 
 <div class="main">
-<!--******************header*****************-->
+
+<!--header-->
+
   <div class="header">
     <div class="logo">
       <h1><a href="index.html"><span>Intellect</span>Hub</a></h1>
     </div>
-<!--*****************menu navigation***********--> 
     <div class="menu_nav">
       <ul>
-        <li class="active"><a href=".html"><b>首页</b></a></li>
-        <li><a href="support.html"><b>定时任务</b></a></li>
-        <li><a href="about.html"><b>温度控制</b></a></li>
-        <li><a href="blog.html"><b>设备管理</b></a></li>
-        <li><a href="contact.html"><b>网络管理</b></a></li>
+        <li class="active"><a href="index.html">首页</a></li>
+        <li><a href="timer.html">定时任务</a></li>
+        <li ><a href="temperature.html">温度控制</a></li>
+        <li><a href="device.html">设备管理</a></li>
+        <li><a href="network.html">网络管理</a></li>
       </ul>
     </div>
     <div class="clr"></div>
-    <div class="hbg"><img src="images/header_images.jpg" width="670" height="298" alt="header images" class="fr" />
+
+   <!--header background--> 
+	<div class="hbg">
+	 <img src="images/header_images2.jpg" width="670" height="298" alt="header images" class="fr" />
       <div class="info fl">
         <h3>In Touch</h3>
         <h4>With Tomorrow</h4>
       </div>
       <div class="clr"></div>
     </div>
-    <div class="clr"></div>
   </div>
-<!--**********main content***************-->
-
-<!--****************side bar******************-->
-      <div class="gadget">
-        <h2 class="star"><span>Sidebar</span> Menu</h2>
-        <div class="clr"></div>
-        <ul class="sb_menu">
-          <li class="active"><a href="#">个人中心</a></li>
-          <li><a href="#">帮助</a></li>
-          <li><a href="#">Style Demo</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Archives</a></li>
-          <!--li><a href="#" title="Website Templates">Web Templates</a></li-->
-        </ul>
-      </div>
-  <div class="footer">
-    <div class="footer_resize">
-      <p class="lf">© Copyright <a href="#">MyWebSite</a>.</p>
-      <!--p class="rf">Collect from <a href="http://www.cssmoban.com/" title="网站模板" target="_blank">网站模板</a></p-->
-      <div class="clr"></div>
-    </div>
-  </div>
+   
+<!--content-->
+<div class="content">
+	<div class="bulb_lf">
+	<img  class="bulbimg" src="images/lightoff.png"/>
+	<p id="hub1">1.空闲</p>
+	<img  class="bulbimg" src="images/lighton.png" />
+	<p id="hub2">2.电视机</p>
+	</div>
+	<div class="bulb_rt">
+	<img  class="bulbimg" src="images/lighton.png"/>
+	<p id="hub3">3.电风扇</p>
+	<img  class="bulbimg" src="images/lighton.png"/>
+	<p id="hub4">4.电 脑</p>
+	</div>
 </div>
-</body>
-</html>
+<!-- sidebar gadget -->
+
+  <div class="gadget">
+        <h2 class="star"><span>Sidebar</span> Menu</h2>
+		<ul class="sb_menu">
+			<li class="active"><a href="#">个人中心<br></a></li>
+			<li><a href="#">帮助</a></li>
+			<li><a href="#">Style Demo</a></li>
+			<li><a href="#">Blog</a></li><li><a href="#">Archives</a></li>
+		</ul>
+  </div>
+<!-- footer -->
+  <div class="footer">
+      © Copyright <a href="#">MyWebSite</a>.
+  </div>
+
+</div>
+</body></html>
