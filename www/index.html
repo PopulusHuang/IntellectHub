@@ -10,7 +10,7 @@
 
 <body>
 <div class="main">
-
+<div>
 <!--header-->
 
   <div class="header">
@@ -41,21 +41,35 @@
    
 <!--content-->
 <div class="content">
-	<div class="bulb_lf">
-	<img  class="bulbimg" src="images/lightoff.png"/>
-	<p id="hub1">1.空闲</p>
-	<img  class="bulbimg" src="images/lighton.png" />
-	<p id="hub2">2.电视机</p>
-	</div>
-	<div class="bulb_rt">
-	<img  class="bulbimg" src="images/lighton.png"/>
-	<p id="hub3">3.电风扇</p>
-	<img  class="bulbimg" src="images/lighton.png"/>
-	<p id="hub4">4.电 脑</p>
+	<div class="bulb">
+		<div class="bulb_lf">
+		<!--hub1-->
+		<form method="post" action="test.html">
+		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
+			<p >1.空闲</p>
+		</form>
+		<!--hub2-->
+		<form method="post" action="test.html">
+		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
+			<p >2.电视机</p>
+		</form>
+		</div>
+		<!--right bulb -->
+		<div class="bulb_rt">
+			<!--hub3-->
+		<form method="post" action="test.html">
+		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
+			<p >3.电风扇</p>
+		</form>
+			<!--hub3-->
+		<form method="post" action="test.html">
+		<input name="submit" type="image" src="images/lighton.png" width="81" height="81"/>
+			<p >4.电 脑</p>
+		</form>
+		</div>
 	</div>
 </div>
 <!-- sidebar gadget -->
-
   <div class="gadget">
         <h2 class="star"><span>Sidebar</span> Menu</h2>
 		<ul class="sb_menu">
@@ -69,6 +83,5 @@
   <div class="footer">
       © Copyright <a href="#">MyWebSite</a>.
   </div>
-
 </div>
 </body></html>

@@ -30,7 +30,3 @@ function delCookie(c_name)
 {
 	setCookie(c_name,"");
 }
-function hello()
-{
-	alert("hello world");
-}

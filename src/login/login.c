@@ -11,11 +11,12 @@ void setCookie()
 	bzero(value,sizeof(value));
 	time(&timep);
 	sprintf(value,"%d",timep);
-	printf("Set-Cookie:FUNNY=%d;path=/\r\n",value);
+	printf("Set-Cookie:FUNNY=%d;path=/\r\n",timep%1000);
 }
 void show_MainPage()
 {
-	printf("<script> location.href=\"../index.html\"; </script>");
+//	printf("<script> location.href=\"../index.html\"; </script>");
+	printf("<meta http-equiv=\"refresh\" content=\"0;url=../index.html\">");
 }
 void show_UserErr()
 {
