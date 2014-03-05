@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/cookie.js"></script>
+	<script type="text/javascript" src="ajax/switch.js"></script>
 	<script> checkCookie()</script>
 </head>
 
@@ -44,9 +45,9 @@
 	<div class="bulb">
 		<div class="bulb_lf">
 		<!--hub1-->
-		<form method="post" action="test.html">
-		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
-			<p >1.空闲</p>
+		<form >
+		<img  id="bulb1" name="bulb1" src="images/lightoff.png" onclick="call_server('bulb1')">
+			<p id="devhub1">1.空闲</p>
 		</form>
 		<!--hub2-->
 		<form method="post" action="test.html">
