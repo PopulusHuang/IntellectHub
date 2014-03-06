@@ -50,10 +50,10 @@ a.rm, a.com { padding:0; text-decoration:none;}
 .content { padding:30px 0; margin:0 auto; width:670px;height:500px;
  		 float:right;
  }
-div.bulb{padding:0 50px;width:500px;height:400;}
+div.bulb{padding:20px 30px;width:500px;height:400;}
 div.bulb_lf{float:left;}
 div.bulb_rt{float:right;}
-div.bulb p{color:#81F781;font-size:23px;text-align:left;}
+div.bulb label{color:#81F781;font-size:23px;text-align:left;}
 div.bulb img{width:81px;height:81px;}
 /* sidebar */
 .sidebar { 

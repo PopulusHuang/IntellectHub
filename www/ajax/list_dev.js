@@ -20,6 +20,6 @@ function list_dev(){
 }
 function refresh_dev(){
 	list_dev();
-	/* refresh device list every two minutes */
-	setTimeout("refresh_dev()",2*60*1000);
+	/* refresh device list every five minutes */
+	setTimeout("refresh_dev()",5*60*1000);
 }

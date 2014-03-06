@@ -4,7 +4,7 @@
 	<script>
 	function changes(){
 	var id=document.getElementById("test");
-	id.innerHTML="world"
+	alert(id.innerHTML);
 	}
 	</script>
 	</head>
@@ -13,6 +13,6 @@
 		<img id="bulb1" name="bulb1" src="../images/eg_bulboff.gif" onclick="call_server('bulb1')"/>
 		</form>
 		<p id="test">hello<p>
-		<script src="../cgi-bin/switch.cgi"></script>
+		<script>changes()</script>
 	</body>
 </html>
