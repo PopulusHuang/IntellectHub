@@ -6,6 +6,7 @@
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/cookie.js"></script>
 	<script type="text/javascript" src="ajax/switch.js"></script>
+	<script type="text/javascript" src="ajax/list_dev.js"></script>
 	<script> checkCookie()</script>
 </head>
 
@@ -42,32 +43,11 @@
    
 <!--content-->
 <div class="content">
-	<div class="bulb">
-		<div class="bulb_lf">
-		<!--hub1-->
-		<form >
-		<img  id="bulb1" name="bulb1" src="images/lightoff.png" onclick="call_server('bulb1')">
-			<p id="devhub1">1.空闲</p>
-		</form>
-		<!--hub2-->
-		<form method="post" action="test.html">
-		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
-			<p >2.电视机</p>
-		</form>
-		</div>
-		<!--right bulb -->
-		<div class="bulb_rt">
-			<!--hub3-->
-		<form method="post" action="test.html">
-		<input name="submit" type="image" src="images/lightoff.png" width="81" height="81"/>
-			<p >3.电风扇</p>
-		</form>
-			<!--hub3-->
-		<form method="post" action="test.html">
-		<input name="submit" type="image" src="images/lighton.png" width="81" height="81"/>
-			<p >4.电 脑</p>
-		</form>
-		</div>
+	<div id="bulb" class="bulb">
+	<script>
+		list_dev();
+		refresh_dev();
+	</script>
 	</div>
 </div>
 <!-- sidebar gadget -->
