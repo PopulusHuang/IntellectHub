@@ -5,11 +5,8 @@
 <title>Timer Setting</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="js/cookie.js"></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/arial.js"></script>
-<script type="text/javascript" src="js/cuf_run.js"></script>
+<link href="css/timer.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/timer_set.js"></script>
 <script>
 		checkCookie()
 </script>
@@ -47,18 +44,96 @@
    
 <!--content-->
 <div class="content">
-	<div class="bulb_lf">
-		<img  class="bulbimg" src="images/lightoff.png"/>
-		<p id="hub1">1.空闲</p>
-		<img  class="bulbimg" src="images/lighton.png" />
-		<p id="hub2">2.电视机</p>
-	</div>
-	<div class="bulb_rt">
-		<img  class="bulbimg" src="images/lighton.png"/>
-		<p id="hub3">3.电风扇</p>
-		<img  class="bulbimg" src="images/lighton.png"/>
-		<p id="hub4">4.电 脑</p>
-	</div>
+	<table class="timer_table" border="1">
+		<!--table header information-->
+		<tr >
+		<th>插口</th>
+		<th>设备</th>
+		<th>定时时间</th>
+		<th>状态</th>
+		<th>操作</th>
+	</tr>
+	<tr id="tr1" style="color:green">
+			<td>1</td>
+			<td>电脑</td>
+			<form action="" method="GET">
+			<td >
+		 <input id="inputtr1"type="TEXT" class="timer_text"name="time"value="21:30-22:10"> 
+				<select id="selecttr1"name="switch_opt" class="select_css">	
+						<option value="on">开</option>
+						<option value="off">关</option>
+			</select>
+			 </td>
+			<td>
+			<label >启用</label><input checked id="boxtr1" class="timer_btn"
+			 onclick="change_color('tr1')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" class="timer_btn">提交</button>
+		</td>
+			</form>
+	</tr>
+	<tr id="tr2"style="color:gray">
+			<td>2</td>
+			<td>空闲</td>
+			<form action="" method="GET">
+			<td>
+		 <input id="inputtr2"type="TEXT"style="color:gray"class="timer_text"name="time"value="21:30-22:10"> 
+			<select id="selecttr2"style="color:gray"name="switch_opt"class="select_css">	
+						<option value="on">开</option>
+						<option value="off">关</option>
+			</select>
+			</td>
+			<td>
+			<label >启用</label><input unchecked id="boxtr2" class="timer_btn"
+			 onclick="change_color('tr2')" type="checkbox"> 
+			</td>
+			</form>
+		<td>
+			<button type="button" class="timer_btn">提交</button>
+		</td>
+			</tr>
+	<tr id="tr3" style="color:gray">
+			<td>3</td>
+			<td>电脑</td>
+			<form action="" method="GET">
+			<td>
+		 <input id="inputtr3"type="TEXT"style="color:gray"class="timer_text"name="time"value="21:30-22:10"> 
+			<select id="selecttr3"style="color:gray"name="switch_opt"class="select_css">	
+						<option value="on">开</option>
+						<option value="off">关</option>
+			</select>
+			</td>
+			<td>
+			<label >启用</label><input unchecked id="boxtr3" class="timer_btn"
+			 onclick="change_color('tr3')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" class="timer_btn">提交</button>
+		</td>
+			</form>
+			</tr>
+	<tr id="tr4" style="color:green">
+		<td>4</td>
+		<td>饮水机</td>
+		<td>
+		 <input id="inputtr4"type="TEXT"style="color:green"class="timer_text"name="time"value="21:30-22:10"> 
+			<select id="selecttr4"style="color:green"name="switch_opt"class="select_css">	
+						<option value="on">开</option>
+						<option value="off">关</option>
+			</select>
+		</td>
+		<form action="" method="GET">
+		<td>
+			<label >启用</label><input checked id="boxtr4" class="timer_btn"
+			 onclick="change_color('tr4')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" class="timer_btn">提交</button>
+		</td>
+		</form>
+	</tr>
+	</table>
 </div>
 <!-- sidebar gadget -->
   <div class="gadget">

@@ -12,7 +12,6 @@ if (document.cookie.length>0)
     } 
   }
 return ""
-
 }
 function checkCookie()
 {

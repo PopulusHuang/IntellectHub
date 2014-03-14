@@ -1,0 +1,37 @@
+/* timer stylesheet */
+.timer_table{
+		color:green;
+		/*background:url(../images/wood_main.png);*/
+		background:url(../images/bat_bg.png);
+		font-size:23px;
+		font-weight:bold;
+	    text-align:center;
+		}
+.timer_text{
+		width:110px;
+		color:green;
+		font-size:19px;
+		font-weight:bold;
+	    text-align:center;
+		background-color:transparent;	
+}
+.select_css{
+		color:green;
+		font-size:19px;
+		font-weight:bold;
+		color:green;
+	    text-align:center;
+		background-color:#505050;	
+}
+.timer_btn{
+		color:white;
+		font-size:18px;
+		font-weight:bold;
+		background-color:#505050;
+}
+.uncheck_color{color:gray;}
+.timer_table td {
+		font-size:18px;
+		padding:15px;
+}
+th{ padding:15px; }

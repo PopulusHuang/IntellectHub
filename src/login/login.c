@@ -7,11 +7,11 @@
 void setCookie()
 {
 	time_t timep;
-	char  value[20];
-	bzero(value,sizeof(value));
+	char  hash_str[20];
+	bzero(hash_str,sizeof(hash_str));
 	time(&timep);
-	sprintf(value,"%d",timep);
-	printf("Set-Cookie:FUNNY=%d;path=/\r\n",timep%1000);
+	sprintf(hash_str,"%x",timep);
+	printf("Set-Cookie:FUNNY=%s;path=/\r\n",hash_str);
 }
 void show_MainPage()
 {

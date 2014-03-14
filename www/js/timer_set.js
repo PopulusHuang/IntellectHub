@@ -1,0 +1,21 @@
+function change_color(row_num)
+{
+	row=document.getElementById(row_num);
+	boxrow=document.getElementById('box'+row_num);
+	inputId=document.getElementById('input'+row_num);
+	selectId=document.getElementById('select'+row_num);
+	if(boxrow.checked==true)
+	{
+		row.style.color='green';
+		boxrow.style.color='green';
+		inputId.style.color='green';
+		selectId.style.color='green';
+	}
+	else
+	{
+		row.style.color='gray';
+		boxrow.style.color='gray';
+		inputId.style.color='gray';
+		selectId.style.color='gray';
+	}
+}

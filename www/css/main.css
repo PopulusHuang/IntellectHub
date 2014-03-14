@@ -9,9 +9,8 @@ html, .main { padding:0; margin:0 auto; width:970px;
 .main{
 	border-style:solid;
 }
-body { margin:0; padding:0; width:100%; color:#959595; font:normal 12px/1.8em Arial, Helvetica, sans-serif; background:#eaeaea;
-	 background:url(../images/wood_bg.jpg);
-	 background-repeat:x-repeat;
+body {margin:0; padding:0; width:100%; color:#959595; font:normal 12px/1.8em Arial, Helvetica, sans-serif; background:#eaeaea;
+	 background:url(../images/black_bg.jpg);
 	 background-attachment:fixed;
 }
 .logo { width:320px; height:96px; padding:0; margin:0 auto; float:left;}
@@ -47,10 +46,12 @@ a.rm, a.com { padding:0; text-decoration:none;}
 .menu_nav ul li.active a, .menu_nav ul li a:hover { color:#fff; text-decoration:none; background:#78bbe6;}
 
 /* content */
-.content { padding:30px 0; margin:0 auto; width:670px;height:500px;
+.content {
+		 padding:30px 0; margin:0 auto; width:670px;height:500px;
  		 float:right;
  }
-div.bulb{padding:20px 30px;width:500px;height:400;}
+div.bulb{
+		padding:20px 30px;width:500px;height:400;}
 div.bulb_lf{float:left;}
 div.bulb_rt{float:right;}
 div.bulb label{color:#81F781;font-size:23px;text-align:left;}
