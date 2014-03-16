@@ -1,9 +1,9 @@
 /* timer stylesheet */
 .timer_table{
 		color:green;
-		/*background:url(../images/wood_main.png);*/
 		background:url(../images/bat_bg.png);
 		font-size:23px;
+		border-collapse:0px;
 		font-weight:bold;
 	    text-align:center;
 		}
@@ -21,17 +21,17 @@
 		font-weight:bold;
 		color:green;
 	    text-align:center;
-		background-color:#505050;	
+		background-color:transparent;	
 }
 .timer_btn{
-		color:white;
+		color:yellow;
 		font-size:18px;
+		border-style:solid;
 		font-weight:bold;
-		background-color:#505050;
+		background-color:transparent;
 }
 .uncheck_color{color:gray;}
 .timer_table td {
 		font-size:18px;
 		padding:15px;
 }
-th{ padding:15px; }
