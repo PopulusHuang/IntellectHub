@@ -27,6 +27,25 @@ function call_sheet(cgi_name,tb_name)
 	request_xmlHttp.onreadystatechange=updateSheet;
 	request_xmlHttp.send(null);
 }
+function call_devlist()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var url="../cgi-bin/device_list.cgi";
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateDevices;
+	request_xmlHttp.send(null);
+}
+function updateDevices()
+{
+	if(request_xmlHttp.readyState==4)
+	{
+	  	var data=request_xmlHttp.responseText;	
+		var dev_tb=document.getElementById('dev_tbId');
+		//document.write(data);
+		dev_tb.innerHTML=data;
+	}
+}
 function updateSheet()
 {
 	if(request_xmlHttp.readyState==4)

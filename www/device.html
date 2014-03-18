@@ -4,7 +4,9 @@
 	<title>Intellect Hub</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<link href="css/sheet.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/cookie.js"></script>
+	<script type="text/javascript" src="ajax/sheet.js"></script>
 	<script> checkCookie()</script>
 </head>
 
@@ -21,7 +23,7 @@
       <ul>
         <li ><a href="index.html">首页</a></li>
         <li><a href="timer.html">定时任务</a></li>
-        <li ><a href="temperate.html">温度控制</a></li>
+        <li ><a href="temperature.html">温度控制</a></li>
         <li class="active"><a href="device.html">设备管理</a></li>
         <li><a href="network.html">网络管理</a></li>
       </ul>
@@ -41,6 +43,19 @@
    
 <!--content-->
 <div class="content">
+	<table class="dev_table" border="1">
+	<tr>
+		<th>序号</th>
+		<th>设备ID</th>
+		<th>设备名称</th>
+		<th>功率(w)</th>	
+		<th>操作</th>
+		<th>备注</th>
+	</tr>
+	<tbody id="dev_tbId">
+	</tbody>
+	<script>call_devlist()</script>
+	</table>
 </div>
 <!-- sidebar gadget -->
   <div class="gadget">
