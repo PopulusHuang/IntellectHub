@@ -1,94 +1,10 @@
 <html>
 		<head>test</head>
 <body>
-<form method="post" action="../cgi-bin/timer_show.cgi">
+<form method="post" action="../cgi-bin/timer_sheet_submit.cgi">
+		<label>ROW:</label><input name="hub_id">
+		<label>TIME:</label><input name="time">
 		<button type="submit">test</button>
 </form>
-		<tr >
-		<th>插口</th>
-		<th>设备</th>
-		<th>定时时间</th>
-		<th>状态</th>
-		<th>操作</th>
-	</tr>
-	<tr id="tr1">
-			<td>1</td>
-			<form >
-			<td id="devid_tr1" name="dev_name">电脑</td>
-			<td >
-		 <input id="timeid_tr1" name="time" type="TEXT" class="timer_text"value="21:30-22:10"> 
-		<select id="selectid_tr1"name="switch_opt" class="select_css">	
-				<option value="on">开</option>
-				<option value="off">关</option>
-			</select>
-			 </td>
-			<td>
-			<label >启用</label>
-			<input checked id="statid_tr1" class="timer_btn" name="timer_enable" onclick="change_color('tr1')" type="checkbox"> 
-			</td>
-		<td>
-			<button type="button" class="timer_btn">提交</button>
-		</td>
-			</form>
-	</tr>
-	<tr id="tr2"style="color:gray">
-			<td>2</td>
-			<td>空闲</td>
-			<form action="" method="GET">
-			<td>
-		 <input id="timeid_tr2"type="TEXT"style="color:gray"class="timer_text"name="time"value="21:30-22:10"> 
-			<select id="selectid_tr2"style="color:gray"name="switch_opt"class="select_css">	
-						<option value="off">关</option>
-						<option value="on">开</option>
-			</select>
-			</td>
-			<td>
-			<label >启用</label><input unchecked id="statid_tr2" class="timer_btn"
-			 onclick="change_color('tr2')" type="checkbox"> 
-			</td>
-			</form>
-		<td>
-			<button type="button" class="timer_btn">提交</button>
-		</td>
-			</tr>
-	<tr id="tr3" style="color:gray">
-			<td>3</td>
-			<td>电脑</td>
-			<form action="" method="GET">
-			<td>
-		 <input id="timeid_tr3"type="TEXT"style="color:gray"class="timer_text"name="time"value="21:30-22:10"> 
-			<select id="selectid_tr3"style="color:gray"name="switch_opt"class="select_css">	
-						<option value="on">开</option>
-						<option value="off">关</option>
-			</select>
-			</td>
-			<td>
-			<label >启用</label><input unchecked id="statid_tr3" class="timer_btn"
-			 onclick="change_color('tr3')" type="checkbox"> 
-			</td>
-		<td>
-			<button type="button" class="timer_btn">提交</button>
-		</td>
-			</form>
-			</tr>
-	<tr id="tr4" style="color:green">
-		<td>4</td>
-		<td>饮水机</td>
-		<td>
-		 <input id="inputtr4"type="TEXT"style="color:green"class="timer_text"name="time"value="21:30-22:10"> 
-			<select id="selecttr4"style="color:green"name="switch_opt"class="select_css">	
-						<option value="on">开</option>
-						<option value="off">关</option>
-			</select>
-		</td>
-		<form action="" method="GET">
-		<td>
-			<label >启用</label><input checked id="boxtr4" class="timer_btn"
-			 onclick="change_color('tr4')" type="checkbox"> 
-			</td>
-		<td>
-			<button type="button" class="timer_btn">提交</button>
-		</td>
-		</form>
-	</tr>
 </body>
+</html>

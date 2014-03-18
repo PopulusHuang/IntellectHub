@@ -2,6 +2,7 @@
 		background-color: #1C1C1C; 
 		background-image:url(../images/login_bg.jpg);
 		background-position:center;
+		background-repeat:repeat-y;
 		background-attachment:fixed;
 	}
 	.wrapper {

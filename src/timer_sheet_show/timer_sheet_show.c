@@ -36,7 +36,7 @@ int cgiMain()
 	int ret;
     sqlite3 *db;
 	/*sqlite open*/
-	ret = sqlite3_open("../../data/timer.db",&db);
+	ret = sqlite3_open("data/timer.db",&db);
 	if(ret != SQLITE_OK)
 	{
 		fputs(sqlite3_errmsg(db),stderr);

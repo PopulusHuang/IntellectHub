@@ -1,7 +1,27 @@
+var TAB_GLOBEL=true;	/*true:update Sheet;false:update row*/
 var timer_xmlHttp=null;
+function call_submit(row)
+{
+	if(timer_xmlHttp==null)
+		timer_ajax_init();
+	var row_num='tr'+row;
+	var rowId=document.getElementById(row_num);
+	var devId=document.getElementById('devId_'+row_num);
+	var timeId=document.getElementById('timeId_'+row_num);
+	var selectId=document.getElementById('selectId_'+row_num);
+	var switch_opt=get_select_value(selectId);
+	var statId=document.getElementById('enableBoxId_'+row_num); 
+	var enable_flg=(statId.checked==true)?'on':'off';
+	var url="../cgi-bin/timer_sheet_submit.cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&time="+escape(timeId.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
+	timer_xmlHttp.open("GET",url,true);
+	timer_xmlHttp.onreadystatechange=updateSheet;
+	timer_xmlHttp.send(null);
+	TAB_GLOBEL=false;
+}
 function call_sheet()
 {
-	timer_ajax_init()
+	if(timer_xmlHttp==null)
+		timer_ajax_init();
 	var url="../cgi-bin/timer_sheet_show.cgi"
 	timer_xmlHttp.open("POST",url,true);
 	timer_xmlHttp.onreadystatechange=updateSheet;
@@ -14,8 +34,14 @@ function updateSheet()
 		var tableId=document.getElementById('timer_tb');
 	  	var data=timer_xmlHttp.responseText.split('&');	
 		var sect=null;
+		if(data==-1)
+		{
+			alert('提交更新失败!');	
+		}
+		else
+		{
 		for (var i = 0; i < data.length-1; i++) {
-			sect = data[i].split('|');	
+			sect = data[i].split('|');
 			var tr_num='tr'+sect[0];	
 			var dev_name=sect[1];
 			var time=sect[2];
@@ -26,6 +52,12 @@ function updateSheet()
 			timer_enable(tr_num,flag);
 			change_color(tr_num);
 			set_timer(tr_num,time);
+		}
+		if(TAB_GLOBEL==false)/* update row data */
+		{
+			alert('提交更新成功!');
+			TAB_GLOBEL=true;
+		}
 		}
 	}
 }
@@ -91,4 +123,14 @@ function timer_ajax_init()
 			timer_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");  
 		}  
 	}
+}
+function hello_row(row)
+{
+	alert(row);
+}
+function get_select_value(selectId)
+{
+	var index=selectId.selectedIndex;
+	var value=selectId.options[index].value;
+	return value;
 }
