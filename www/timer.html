@@ -6,7 +6,7 @@
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link href="css/timer.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/cookie.js"></script>
-<script type="text/javascript" src="ajax/timer_sheet.js"></script>
+<script type="text/javascript" src="ajax/sheet.js"></script>
 
 <script>
 		checkCookie()
@@ -54,14 +54,11 @@
 		<th>操作</th>
 	</tr>
 	<tr id="tr1">
-		<!--
-		<form action="cgi-bin/timer_sheet_submit.cgi" method="POST">
-				-->
 		<form>
 		<td>1</td>
 		<td id="devId_tr1" name="dev_name">电脑</td>
 		<td >
-		 <input id="timeId_tr1" name="time" type="TEXT" class="timer_text"value=""> 
+		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timer_text"value=""> 
 		<select id="selectId_tr1"name="switch_opt" class="select_css">	
 				<option value="0">关</option>
 				<option value="1">开</option>
@@ -72,7 +69,7 @@
 			<input id="enableBoxId_tr1" class="timer_btn" name="enableBox" onclick="change_color('tr1')" type="checkbox"> 
 			</td>
 		<td>
-	<button type="button" onclick="call_submit('1')"class="timer_btn">提交</button>
+	<button type="button" onclick="call_submit('1','timer_sheet_submit')"class="timer_btn">提交</button>
 		</form>
 		</td>
 	</tr>
@@ -81,7 +78,7 @@
 			<form>
 			<td id="devId_tr2" name="dev_name">空闲</td>
 			<td>
-		 <input id="timeId_tr2"type="TEXT"class="timer_text"name="time"value=""> 
+		 <input id="inputId_tr2"type="TEXT"class="timer_text"name="inputVal"value=""> 
 			<select id="selectId_tr2"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -92,7 +89,7 @@
 			 onclick="change_color('tr2')" type="checkbox"> 
 			</td>
 		<td>
-			<button type="button" onclick="call_submit('2')"class="timer_btn">提交</button>
+			<button type="button" onclick="call_submit('2','timer_sheet_submit')"class="timer_btn">提交</button>
 			</form>
 		</td>
 			</tr>
@@ -101,7 +98,7 @@
 			<form method="GET">
 			<td id="devId_tr3" name="dev_name">电脑</td>
 			<td>
-		 <input id="timeId_tr3"type="TEXT"class="timer_text"name="time"value="21:30-22:10"> 
+		 <input id="inputId_tr3"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
 			<select id="selectId_tr3"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -112,7 +109,7 @@
 			 onclick="change_color('tr3')" type="checkbox"> 
 			</td>
 		<td>
-			<button type="button" onclick="call_submit('3')" class="timer_btn">提交</button>
+			<button type="button" onclick="call_submit('3','timer_sheet_submit')" class="timer_btn">提交</button>
 			</form>
 		</td>
 			</tr>
@@ -121,7 +118,7 @@
 		<form method="POST">
 		<td id="devId_tr4" name="dev_name">饮水机</td>
 		<td>
-		 <input id="timeId_tr4"type="TEXT"class="timer_text"name="time"value="21:30-22:10"> 
+		 <input id="inputId_tr4"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
 			<select id="selectId_tr4"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -132,11 +129,11 @@
 			 onclick="change_color('tr4')" type="checkbox"> 
 			</td>
 		<td>
-			<button type="button" onclick="call_submit('4')"class="timer_btn">提交</button>
+			<button type="button" onclick="call_submit('4','timer_sheet_submit')"class="timer_btn">提交</button>
 			</form>
 		</td>
 	</tr>
-	<script>call_sheet()</script>
+	<script>call_sheet('sheet_show','timer_tb')</script>
 	</table>
 </div>
 <!-- sidebar gadget -->

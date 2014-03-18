@@ -34,12 +34,11 @@ int cgiMain()
 	cgiFormString("switch_opt",switch_buf,5);
 	cgiFormString("enableBox",enable_buf,5);
 	int hub_id=atoi(id_buf);
-	n=sheet_row_modify(db,"timer_tb",hub_id,time_buf,switch_buf,enable_buf);
+	n=sheet_row_modify(db,"temp_tb",hub_id,time_buf,switch_buf,enable_buf);
 	/*update sheet*/
 	if(n==0)
-		sheet_row_show(db,"timer_tb",hub_id,"电视");
+		sheet_row_show(db,"temp_tb",hub_id,"电视");
 	else
 		printf("-1");
-	//printf("%s|%s|%s|%s",id_buf,time_buf,switch_buf,enable_buf);
 	sqlite3_close(db);
 }

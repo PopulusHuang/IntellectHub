@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-
 <html >
 <head>
 <title>Temperature Control</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-
+<link href="css/timer.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="ajax/sheet.js"></script>
 <script type="text/javascript" src="js/cookie.js"></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/arial.js"></script>
-<script type="text/javascript" src="js/cuf_run.js"></script>
 <script>
-		checkCookie()
+		checkCookie();
 </script>
 </head>
 <body>
@@ -47,6 +44,97 @@
    
 <!--content-->
 <div class="content">
+
+	<table id="timer_tb"class="timer_table" border="1">
+		<tr >
+		<th>插口</th>
+		<th>设备</th>
+		<th>温度上下限(°C)</th>
+		<th>状态</th>
+		<th>操作</th>
+	</tr>
+	<tr id="tr1">
+		<form>
+		<td>1</td>
+		<td id="devId_tr1" name="dev_name">电脑</td>
+		<td >
+		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timer_text"value=""> 
+		<select id="selectId_tr1"name="switch_opt" class="select_css">	
+				<option value="0">关</option>
+				<option value="1">开</option>
+		</select>
+		 </td>
+			<td>
+			<label >启用</label>
+			<input id="enableBoxId_tr1" class="timer_btn" name="enableBox" onclick="change_color('tr1')" type="checkbox"> 
+			</td>
+		<td>
+	<button type="button" onclick="call_submit('1','temp_submit')"class="timer_btn">提交</button>
+		</form>
+		</td>
+	</tr>
+	<tr id="tr2">
+			<td>2</td>
+			<form>
+			<td id="devId_tr2" name="dev_name">空闲</td>
+			<td>
+		 <input id="inputId_tr2"type="TEXT"class="timer_text"name="inputVal"value=""> 
+			<select id="selectId_tr2"name="switch_opt"class="select_css">	
+						<option value="0">关</option>
+						<option value="1">开</option>
+			</select>
+			</td>
+			<td>
+			<label >启用</label><input unchecked id="enableBoxId_tr2" class="timer_btn" name="enableBox"
+			 onclick="change_color('tr2')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" onclick="call_submit('2','temp_submit')"class="timer_btn">提交</button>
+			</form>
+		</td>
+			</tr>
+	<tr id="tr3" >
+			<td>3</td>
+			<form method="GET">
+			<td id="devId_tr3" name="dev_name">电脑</td>
+			<td>
+		 <input id="inputId_tr3"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
+			<select id="selectId_tr3"name="switch_opt"class="select_css">	
+						<option value="0">关</option>
+						<option value="1">开</option>
+			</select>
+			</td>
+			<td>
+			<label >启用</label><input unchecked id="enableBoxId_tr3" class="timer_btn"
+			 onclick="change_color('tr3')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" onclick="call_submit('3','temp_submit')" class="timer_btn">提交</button>
+			</form>
+		</td>
+			</tr>
+	<tr id="tr4" >
+		<td>4</td>
+		<form method="POST">
+		<td id="devId_tr4" name="dev_name">饮水机</td>
+		<td>
+		 <input id="inputId_tr4"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
+			<select id="selectId_tr4"name="switch_opt"class="select_css">	
+						<option value="0">关</option>
+						<option value="1">开</option>
+			</select>
+		</td>
+		<td>
+			<label >启用</label><input checked id="enableBoxId_tr4" name="enableBox_tr4"class="timer_btn"
+			 onclick="change_color('tr4')" type="checkbox"> 
+			</td>
+		<td>
+			<button type="button" onclick="call_submit('4','temp_submit')"class="timer_btn">提交</button>
+			</form>
+		</td>
+	</tr>
+	<script>call_sheet('sheet_show','temp_tb')</script>
+	</table>
 </div>
 <!-- sidebar gadget -->
 

@@ -1,9 +1,9 @@
-orignal=timer_sheet_submit
+orignal=temp_submit
 obj=$(orignal).o ../share/sheet_sql.o
 CC=gcc
 CGIDIR=../../www/cgi-bin/
 LIBPATH=../../lib
-INCPATH=../../include
+INCPATH=../../include 
 LIB=cgic
 app=$(CGIDIR)$(orignal).cgi
 CFLAGS=-L$(LIBPATH) -I$(INCPATH) -l$(LIB) -lsqlite3 

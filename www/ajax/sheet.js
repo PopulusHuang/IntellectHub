@@ -1,38 +1,37 @@
 var TAB_GLOBEL=true;	/*true:update Sheet;false:update row*/
-var timer_xmlHttp=null;
-function call_submit(row)
+var request_xmlHttp=null;
+function call_submit(row,cgi_name)
 {
-	if(timer_xmlHttp==null)
-		timer_ajax_init();
+	if(request_xmlHttp==null)
+		request_ajax_init();
 	var row_num='tr'+row;
 	var rowId=document.getElementById(row_num);
 	var devId=document.getElementById('devId_'+row_num);
-	var timeId=document.getElementById('timeId_'+row_num);
+	var inputId=document.getElementById('inputId_'+row_num);
 	var selectId=document.getElementById('selectId_'+row_num);
 	var switch_opt=get_select_value(selectId);
 	var statId=document.getElementById('enableBoxId_'+row_num); 
 	var enable_flg=(statId.checked==true)?'on':'off';
-	var url="../cgi-bin/timer_sheet_submit.cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&time="+escape(timeId.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
-	timer_xmlHttp.open("GET",url,true);
-	timer_xmlHttp.onreadystatechange=updateSheet;
-	timer_xmlHttp.send(null);
+	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(inputId.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateSheet;
+	request_xmlHttp.send(null);
 	TAB_GLOBEL=false;
 }
-function call_sheet()
+function call_sheet(cgi_name,tb_name)
 {
-	if(timer_xmlHttp==null)
-		timer_ajax_init();
-	var url="../cgi-bin/timer_sheet_show.cgi"
-	timer_xmlHttp.open("POST",url,true);
-	timer_xmlHttp.onreadystatechange=updateSheet;
-	timer_xmlHttp.send(null);
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var url="../cgi-bin/"+cgi_name+".cgi?tb_name="+escape(tb_name);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateSheet;
+	request_xmlHttp.send(null);
 }
 function updateSheet()
 {
-	if(timer_xmlHttp.readyState==4)
+	if(request_xmlHttp.readyState==4)
 	{
-		var tableId=document.getElementById('timer_tb');
-	  	var data=timer_xmlHttp.responseText.split('&');	
+	  	var data=request_xmlHttp.responseText.split('&');	
 		var sect=null;
 		if(data==-1)
 		{
@@ -49,9 +48,9 @@ function updateSheet()
 			var flag=sect[4];
 			set_devname(tr_num,dev_name);
 			switch_ctrl(tr_num,switch_opt);
-			timer_enable(tr_num,flag);
+			enable_box(tr_num,flag);
 			change_color(tr_num);
-			set_timer(tr_num,time);
+			set_input(tr_num,time);
 		}
 		if(TAB_GLOBEL==false)/* update row data */
 		{
@@ -66,16 +65,16 @@ function set_devname(tr_num,dev_name)
 	var devId=document.getElementById('devId_'+tr_num);	
 	devId.innerHTML=dev_name;
 }
-function set_timer(tr_num,time)
+function set_input(tr_num,time)
 {
-	var timeId=document.getElementById('timeId_'+tr_num);
-	timeId.value=time;
+	var inputId=document.getElementById('inputId_'+tr_num);
+	inputId.value=time;
 }
 function change_color(tr_num)
 {
 	row=document.getElementById(tr_num);
 	boxrow=document.getElementById('enableBoxId_'+tr_num);
-	inputId=document.getElementById('timeId_'+tr_num);
+	inputId=document.getElementById('inputId_'+tr_num);
 	selectId=document.getElementById('selectId_'+tr_num);
 
 	if(boxrow.checked==true)
@@ -99,34 +98,30 @@ function switch_ctrl(tr_num,stat)
 	selectId=document.getElementById('selectId_'+tr_num);	
 	selectId.options[stat].selected=true;
 }
-function timer_enable(tr_num,flag)
+function enable_box(tr_num,flag)
 {
 	boxId=document.getElementById('enableBoxId_'+tr_num);
 	value=(flag=='on')?1:null;
 	boxId.checked=value;
 }
-function timer_ajax_init()
+function request_ajax_init()
 {
 	try  
 	{  
 			/* non-IE browser*/
-			timer_xmlHttp=new XMLHttpRequest();  
+			request_xmlHttp=new XMLHttpRequest();  
 	}  
 	catch (e)  
 	{  
 		try  
 		{  
-			timer_xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			request_xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
 		}  
 		catch (e)  
 		{  
-			timer_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");  
+			request_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");  
 		}  
 	}
-}
-function hello_row(row)
-{
-	alert(row);
 }
 function get_select_value(selectId)
 {
