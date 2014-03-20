@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../include/cgic.h"
-#include "device_sql.h"
+#include "../share/device_sql.h"
 int cgiMain()
 {
 	int n;

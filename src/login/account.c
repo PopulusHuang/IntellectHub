@@ -70,7 +70,7 @@ int account_register(sqlite3 *db,char *username,char *passwd)
 		printf("Account is already exits!\n");	
 		n = USER_EXIST;  
 	}
-		return ;
+		return 0;
 }
 int account_modify_passwd(sqlite3 *db,char *username,char *passwd)
 {

@@ -1,4 +1,4 @@
-orignal=device_list
+orignal=device_manage
 obj=$(orignal).o ../share/device_sql.o
 CC=gcc
 CGIDIR=../../www/cgi-bin/

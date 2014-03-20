@@ -40,3 +40,12 @@
 		font-size:18px;
 		padding:15px;
 }
+#reg_id input{width:110px;color:green;
+			font-size:19px;font-weight:bold;
+			background-color:transparent;
+}
+#reg_id button{ color:yellow;font-size:18px;
+				border-style:solid; 
+				font-weight:bold;
+				background-color:transparent;
+}

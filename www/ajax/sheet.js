@@ -27,6 +27,7 @@ function call_sheet(cgi_name,tb_name)
 	request_xmlHttp.onreadystatechange=updateSheet;
 	request_xmlHttp.send(null);
 }
+/* get device sheet */
 function call_devlist()
 {
 	if(request_xmlHttp==null)
@@ -36,16 +37,53 @@ function call_devlist()
 	request_xmlHttp.onreadystatechange=updateDevices;
 	request_xmlHttp.send(null);
 }
+function call_devSubmit(row)
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var dev_id=document.getElementById('dev_id'+row);
+	var dev_name=document.getElementById('dev_name'+row);
+	var dev_power=document.getElementById('dev_power'+row);
+	var cmd=null;
+	var del_box=document.getElementById('del_box'+row);
+
+	if(del_box.checked==true)
+		cmd='DEL';
+	else
+		cmd='MOD';
+	
+	var url="../cgi-bin/device_manage.cgi?cmd="+escape(cmd)+"&dev_id="+escape(dev_id.innerHTML)+"&dev_name="+encodeURI(dev_name.value)+"&dev_power="+escape(dev_power.value);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateDevices;
+	request_xmlHttp.send(null);
+}
+function call_devReg()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var dev_id=document.getElementById('reg_dev_id');
+	var dev_name=document.getElementById('reg_name');
+	var dev_power=document.getElementById('reg_power');
+	var url="../cgi-bin/device_manage.cgi?cmd="+escape('REG')+"&dev_id="+escape(dev_id.value)+"&dev_name="+encodeURI(dev_name.value)+"&dev_power="+escape(dev_power.value);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateDevices;
+	request_xmlHttp.send(null);
+	hide_table();
+
+}
+/* update device list */
 function updateDevices()
 {
 	if(request_xmlHttp.readyState==4)
 	{
 	  	var data=request_xmlHttp.responseText;	
 		var dev_tb=document.getElementById('dev_tbId');
-		//document.write(data);
+		if(data=='-1')
+			alert('提交失败!');
 		dev_tb.innerHTML=data;
 	}
 }
+
 function updateSheet()
 {
 	if(request_xmlHttp.readyState==4)
@@ -78,6 +116,24 @@ function updateSheet()
 		}
 		}
 	}
+}
+/*show device register table*/
+function show_table()
+{
+	var id_tb="<td><input id=\"reg_dev_id\"type=\"text\"></td>"
+	var dev_name="<td><input id=\"reg_name\"type=\"text\"></td>"
+	var dev_power="<td><input id=\"reg_power\"type=\"text\"></td>"
+	var new_tb=document.getElementById('reg_id');
+	var	tb_header="<tr><th>设备ID</th><th>设备名称</th><th>设备功率</th></tr>" 
+	var ok_btn="<button type=\"button\"onclick=\"call_devReg()\">确定</button>"
+	var cancel_btn="<button type=\"button\" onclick=\"hide_table()\">取消</button>"
+	new_tb.innerHTML=tb_header+"<tr>"+id_tb+dev_name+dev_power+"</tr>"+ok_btn+cancel_btn;
+}
+/*hide device register table*/
+function hide_table()
+{
+	var reg_id=document.getElementById('reg_id');
+	reg_id.innerHTML="";
 }
 function set_devname(tr_num,dev_name)
 {
