@@ -1,16 +1,12 @@
 /* main stylesheet */
 @charset "utf-8";
-/*
-Design by http://www.templateaccess.com
-Released for free under a Creative Commons Attribution 3.0 License
-*/
 html, .main { padding:0; margin:0 auto; width:970px;
 }
 .main{
 	border-style:solid;
 }
-body {margin:0; padding:0; width:100%; color:#959595; font:normal 12px/1.8em Arial, Helvetica, sans-serif; background:#eaeaea;
-	 background:url(../images/black_bg.jpg);
+body {margin:0; padding:0; width:100%; color:#959595; font:normal 12px/1.8em Arial, Helvetica, sans-serif; background-color:#424242;
+/*	 background:url(../images/black_bg.jpg);*/
 	 background-attachment:fixed;
 }
 .logo { width:320px; height:96px; padding:0; margin:0 auto; float:left;}

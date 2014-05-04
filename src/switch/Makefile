@@ -5,7 +5,7 @@ LIBPATH=../../lib
 INCPATH=../../include
 LIB=cgic
 app=$(CGIDIR)switch.cgi
-CFLAGS=-L$(LIBPATH) -I$(INCPATH) -l$(LIB) 
+CFLAGS=-L$(LIBPATH) -I$(INCPATH) -l$(LIB) -lgpio 
 $(app):$(obj)
 	$(CC) -o $@  $(obj) $(CFLAGS)
 cleanobj:

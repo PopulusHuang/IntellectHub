@@ -18,11 +18,11 @@ int cgiMain() {
 
 	printf("<div class=\"bulb_lf\">");
 	show_hub_stat("hub1","on","电脑","1");
-	show_hub_stat("hub2","on","电视","3");
+	show_hub_stat("hub3","on","电视","3");
 	printf("</div>");
 
 	printf("<div class=\"bulb_rt\">");
-	show_hub_stat("hub3","off","空闲","2");
+	show_hub_stat("hub2","off","空闲","2");
 	show_hub_stat("hub4","off","饮水机","4");
 	printf("</div>");
     return 0;

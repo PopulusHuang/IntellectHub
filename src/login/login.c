@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "../../include/cgic.h"
+#include "cgic.h"
+#include "session.h"
 #include "account.h"
 #include <string.h>
 #include <stdlib.h>
@@ -38,7 +39,12 @@ int cgiMain() {
 	ACCOUNT user;
 	int n;
 	int ret;
-	setCookie();
+//	setCookie();
+    if(session_start() < 0)
+    {
+	perror("session start");
+//	exit(1);
+    }
     cgiHeaderContentType("text/html");
     cgiFormString("name",user.name, 241);
     cgiFormString("passwd",user.passwd, 241);
@@ -47,7 +53,7 @@ int cgiMain() {
 #if 1
  /* open database */ 
   sqlite3 *db;
-	ret = sqlite3_open("../../data/hub_user.db",&db);
+	ret = sqlite3_open("data/hub_user.db",&db);
 	if(ret != SQLITE_OK)
 	{
 		fputs(sqlite3_errmsg(db),stderr);

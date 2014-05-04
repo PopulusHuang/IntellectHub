@@ -12,7 +12,7 @@
 #define CGICDEBUGSTART \
 	{ \
 		FILE *dout; \
-		dout = fopen("/home/boutell/public_html/debug", "a"); \
+		dout = fopen("/tmp/debug", "a"); \
 	
 #define CGICDEBUGEND \
 		fclose(dout); \
@@ -39,7 +39,7 @@
 #else
 #include <unistd.h>
 #endif /* WIN32 */
-#include "../include/cgic.h"
+#include "cgic.h"
 
 #define cgiStrEq(a, b) (!strcmp((a), (b)))
 
