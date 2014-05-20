@@ -13,7 +13,7 @@
 int gpio_pinMode(int pinID,int mode);
 int gpio_open(int pinID,char *gpio_path);
 int gpio_setPin(int pinID,int value);
-char gpio_pinStat(int pinID);
+int gpio_pinStat(int pinID);
 int gpio_write(int fd,int value);
 char gpio_read(int fd);
 #endif

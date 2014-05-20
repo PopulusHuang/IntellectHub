@@ -1,11 +1,13 @@
-obj=show_dev.o
+DIR = $(shell pwd)/../../
+
+obj=show_dev.o 
 CC=gcc
-CGIDIR=../../www/cgi-bin/
-LIBPATH=../../lib
-INCPATH=../../include
-LIB=cgic
+CGIDIR=$(DIR)www/cgi-bin/
+LIBPATH=$(DIR)lib
+INCPATH=-I$(DIR)include
+LIB=-lcgic -lgpio
 app=$(CGIDIR)show_dev.cgi
-CFLAGS=-L$(LIBPATH) -I$(INCPATH) -l$(LIB) 
+CFLAGS=-L$(LIBPATH) $(INCPATH) $(LIB) 
 $(app):$(obj)
 	$(CC) -o $@  $(obj) $(CFLAGS)
 cleanobj:

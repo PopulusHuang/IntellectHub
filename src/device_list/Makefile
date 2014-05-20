@@ -1,5 +1,5 @@
 orignal=device_list
-obj=$(orignal).o ../share/device_sql.o
+obj=$(orignal).o ../share/device_sql.o ../share/read_rfid.o
 CC=gcc
 CGIDIR=../../www/cgi-bin/
 LIBPATH=../../lib

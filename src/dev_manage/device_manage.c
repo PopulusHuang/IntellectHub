@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../include/cgic.h"
-#include "../share/device_sql.h"
+#include "cgic.h"
+#include "device_sql.h"
 #define CMD_SIZE  10
 #define ID_SIZE   10
 #define NAME_SIZE 50

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "device_sql.h"
+#include "read_rfid.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -47,7 +48,6 @@ int dev_id_isexist(sqlite3 *db,char *id)
 {
 	char sql[BUF_SIZE];	/* SQL sentene */	
 	int ret;
-	int row,col;
 	char *err = 0;
 	char **aResult;
 	char *zErrMsg = NULL;
@@ -130,5 +130,45 @@ int dev_remove(sqlite3 *db,const char *id)
 		sqlite3_free(zErrMsg);
 		return -1;
 	}
+	return 0;
+}
+int dev_check(sqlite3 *db,char *dev_name,int hub_index)
+{
+	int fd;
+	char cardID[9];	
+
+	char sql[BUF_SIZE];	/* SQL sentene */	
+	int ret;
+	int row,col;
+	char *err = 0;
+	char **aResult;
+
+	memset(cardID,0,sizeof(cardID));
+	fd = rfid_open();
+	rfid_read(fd,cardID,hub_index);
+	
+	if(strcmp(cardID,"FF")==0)
+	{
+		strcpy(dev_name,"Unkown");	
+		return 0;
+	}
+	sprintf(sql,"select dev_name from device_tb where id = '%s';",cardID);
+	/* sqlite3 query, the result are stored in a array 
+	 * which was the 'aResult' point to*/
+	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
+	int i,index;
+
+	if(row == 0||col ==0) /* empty result */
+	{
+		return -1;
+	}
+
+	for (i = 1;i < (row+1)*col;i++)
+	{
+		strcpy(dev_name,aResult[i]);
+	}
+
+	sqlite3_free_table(aResult);
+	close(fd);	
 	return 0;
 }
