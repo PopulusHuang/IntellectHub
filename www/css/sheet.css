@@ -2,7 +2,7 @@
 .timer_table,.dev_table {
 		color:green;
 		background:url(../images/bat_bg.png);
-		font-size:23px;
+		font-size:18px;
 
 		border-collapse:0px;
 		font-weight:bold;
@@ -11,7 +11,7 @@
 .timer_text{
 		width:110px;
 		color:green;
-		font-size:19px;
+		font-size:15px;
 		font-weight:bold;
 	    text-align:center;
 		background-color:transparent;	
@@ -24,9 +24,15 @@
 	    text-align:center;
 		background-color:transparent;	
 }
+.hint{
+		color:yellow;
+		font-size:15px;
+		font-weight:bold;
+		background-color:transparent;
+}
 .timer_btn{
 		color:yellow;
-		font-size:18px;
+		font-size:15px;
 		border-style:solid;
 		font-weight:bold;
 		background-color:transparent;
@@ -37,8 +43,8 @@
 		padding:15px;
 }
 .dev_table td{
-		font-size:18px;
-		padding:15px;
+		font-size:15px;
+		padding:10px;
 }
 #reg_id input{width:110px;color:green;
 			font-size:19px;font-weight:bold;

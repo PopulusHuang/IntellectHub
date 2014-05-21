@@ -7,6 +7,7 @@
 #include <termios.h>
 #include <errno.h> 
 #include <string.h>
+#include "device_sql.h"
 #define BUF_SIZE 256
 #define SERIAL_DEV    "/dev/ttyS1"
 int serial_cfg(int serialfd,int baud)
@@ -58,16 +59,15 @@ int serial_cfg(int serialfd,int baud)
 		 perror("serial error");	
 		 return -1;
 	}
-	printf("configure complete\n");
+	printf("Configure complete!\n");
 	return 0;
-
 }
-int rfid_read(int serialfd ,char *cardID,int hub_index)
+int read_card(int serialfd ,int RdIndex,char *cardID)
 {
 	char Reader[3] = {0xc1,0xc2,0xc3};
 
-	write(serialfd,Reader+hub_index,1);
-	usleep(1000);
+	write(serialfd,Reader+RdIndex,1);
+	sleep(1);
 	read(serialfd,cardID,8);
 
 	return 0;
@@ -77,12 +77,13 @@ void enable_uart2(void)
 	system("echo 3 > /sys/devices/virtual/misc/gpio/mode/gpio0");	
 	system("echo 3 > /sys/devices/virtual/misc/gpio/mode/gpio1");	
 }
-int rfid_open(void)
+int main(void)
 {
-	int i;
+	int i,ret = 0;
 	int serialfd;
 	int state;
-	
+	sqlite3 *db;
+
 	enable_uart2();
 
 	serialfd=open(SERIAL_DEV,O_RDWR|O_NONBLOCK);
@@ -101,5 +102,55 @@ int rfid_open(void)
 	/* Flush the buffer. */
 	tcflush(serialfd, TCIOFLUSH);
 
-	return serialfd;
+	
+	printf("read_card...\n");
+	ret = sqlite3_open("../../www/cgi-bin/data/devices.db",&db);
+
+	if(ret != SQLITE_OK)
+	{
+		fputs(sqlite3_errmsg(db),stderr);
+		fputs("\n",stderr);
+		exit(1);
+	}
+	char cardID[10];
+	char dev_name[30];
+
+	int n;
+	memset(cardID,0,sizeof(cardID));
+	memset(dev_name,0,sizeof(dev_name));
+	while(1)
+	{
+		for(i = 0;i < 3;i++)
+		{
+			read_card(serialfd,i,cardID);
+			printf("%s\n",cardID);
+
+			if((strcmp(cardID,"FF") == 0)||(strcmp(cardID,"") == 0)) //has no card
+			{
+				strcpy(cardID,"null");
+				strcpy(dev_name,"null");
+			}
+			else
+			{
+				if(dev_id_isexist(db,cardID))
+				{
+					//card exist,then get the device's name
+					dev_getName(db,"device_tb",cardID,dev_name);
+				}
+				else	/* undefine device */
+				{
+					strcpy(dev_name,"undefine");	
+				}
+			}
+			/* update the current devices */
+			dev_update(db,i+1,cardID,dev_name);	
+
+			memset(cardID,0,sizeof(cardID));
+			memset(dev_name,0,sizeof(dev_name));
+			sleep(2);
+		}
+	}
+
+	close(serialfd);
+	return 0;
 }

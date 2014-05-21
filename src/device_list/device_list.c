@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../include/cgic.h"
-#include "../share/device_sql.h"
+#include "cgic.h"
+#include "device_sql.h"
 int cgiMain()
 {
 	int n;
@@ -16,5 +16,7 @@ int cgiMain()
 		fputs("\n",stderr);
 		exit(1);
 	}
-	dev_sheet_list(db);
+	dev_sheet_list(db); /* list the register device */
+	printf("<div class=\"hint\">当前设备</div>");
+	dev_current_list(db);
 }

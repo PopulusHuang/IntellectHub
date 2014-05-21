@@ -36,7 +36,7 @@ int cgiMain()
 
 	}else if(strcmp(cmd,"MOD")==0)
 	{
-		n = dev_modify(db,id,dev_name,dev_power);	
+		n = dev_modify(db,"device_tb",id,dev_name,dev_power);	
 
 	}else if(strcmp(cmd,"REG")==0)
 	{

@@ -1,5 +1,5 @@
 orignal=device_manage
-obj=$(orignal).o ../share/device_sql.o ../share/read_rfid.o
+obj=$(orignal).o ../share/device_sql.o 
 CC=gcc
 CGIDIR=../../www/cgi-bin/
 LIBPATH=../../lib
