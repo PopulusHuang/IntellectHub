@@ -1,5 +1,6 @@
 var TAB_GLOBEL=true;	/*true:update Sheet;false:update row*/
 var request_xmlHttp=null;
+
 function call_submit(row,cgi_name)
 {
 	if(request_xmlHttp==null)
@@ -8,11 +9,14 @@ function call_submit(row,cgi_name)
 	var rowId=document.getElementById(row_num);
 	var devId=document.getElementById('devId_'+row_num);
 	var inputId=document.getElementById('inputId_'+row_num);
+	var inputId2=document.getElementById('inputId_'+row_num+'b');
 	var selectId=document.getElementById('selectId_'+row_num);
 	var switch_opt=get_select_value(selectId);
 	var statId=document.getElementById('enableBoxId_'+row_num); 
 	var enable_flg=(statId.checked==true)?'on':'off';
-	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(inputId.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
+
+	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(inputId.value)+"&inputVal2="+escape(inputId2.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
+
 	request_xmlHttp.open("GET",url,true);
 	request_xmlHttp.onreadystatechange=updateSheet;
 	request_xmlHttp.send(null);
@@ -37,6 +41,7 @@ function call_devlist()
 	request_xmlHttp.onreadystatechange=updateDevices;
 	request_xmlHttp.send(null);
 }
+/* submit devices modification  */
 function call_devSubmit(row)
 {
 	if(request_xmlHttp==null)
@@ -57,6 +62,7 @@ function call_devSubmit(row)
 	request_xmlHttp.onreadystatechange=updateDevices;
 	request_xmlHttp.send(null);
 }
+/* submit devices register information */
 function call_devReg()
 {
 	if(request_xmlHttp==null)
@@ -100,14 +106,15 @@ function updateSheet()
 			sect = data[i].split('|');
 			var tr_num='tr'+sect[0];	
 			var dev_name=sect[1];
-			var time=sect[2];
-			var switch_opt=sect[3];
-			var flag=sect[4];
+			var Lvalue=sect[2];
+			var Rvalue=sect[3];
+			var switch_opt=sect[4];
+			var flag=sect[5];
 			set_devname(tr_num,dev_name);
 			switch_ctrl(tr_num,switch_opt);
 			enable_box(tr_num,flag);
 			change_color(tr_num);
-			set_input(tr_num,time);
+			set_inputScope(tr_num,Lvalue,Rvalue);
 		}
 		if(TAB_GLOBEL==false)/* update row data */
 		{
@@ -140,10 +147,12 @@ function set_devname(tr_num,dev_name)
 	var devId=document.getElementById('devId_'+tr_num);	
 	devId.innerHTML=dev_name;
 }
-function set_input(tr_num,time)
+function set_inputScope(tr_num,Lvalue,Rvalue)
 {
 	var inputId=document.getElementById('inputId_'+tr_num);
-	inputId.value=time;
+	var inputId2=document.getElementById('inputId_'+tr_num+'b');
+	inputId.value=Lvalue;
+	inputId2.value=Rvalue;
 }
 function change_color(tr_num)
 {

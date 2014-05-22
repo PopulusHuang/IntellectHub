@@ -4,19 +4,20 @@
 #include "sheet_sql.h"
 #include "device_sql.h"
 #include "cgic.h"
-#define BUF_SIZE 1024
+#define BUF_SIZE 256
 int cgiMain()
 {
 	int i,n;
 	int ret;
 	char id_buf[10];
-	char time_buf[20];
+	char inputStr[2][VALUE_SIZE];
 	char switch_buf[5];
 	char enable_buf[5];
 	char cmd[BUF_SIZE];
 	char dev_name[DEVNAME_SIZE];
+
 	memset(id_buf,0,sizeof(id_buf));
-	memset(time_buf,0,sizeof(time_buf));
+	memset(inputStr,0,sizeof(inputStr));
 	memset(switch_buf,0,sizeof(switch_buf));
 	memset(enable_buf,0,sizeof(enable_buf));
 	memset(dev_name,0,sizeof(dev_name));
@@ -33,11 +34,12 @@ int cgiMain()
 	/* cgic header */
     cgiHeaderContentType("text/plain");
 	cgiFormString("hub_id",id_buf,10);
-	cgiFormString("inputVal",time_buf,20);
+	cgiFormString("inputVal",inputStr[0],VALUE_SIZE-1);
+	cgiFormString("inputVal2",inputStr[1],VALUE_SIZE-1);
 	cgiFormString("switch_opt",switch_buf,5);
 	cgiFormString("enableBox",enable_buf,5);
 	int hub_id=atoi(id_buf);
-	n=sheet_row_modify(db,"timer_tb",hub_id,time_buf,switch_buf,enable_buf);
+	n=sheet_row_modify(db,"timer_tb",hub_id,inputStr,switch_buf,enable_buf);
 	/*update sheet*/
 	if(n==0)
 	{
@@ -46,6 +48,6 @@ int cgiMain()
 	}
 	else
 		printf("-1");
-	//printf("%s|%s|%s|%s",id_buf,time_buf,switch_buf,enable_buf);
+	//printf("%s|%s|%s|%s",id_buf,inputStr,switch_buf,enable_buf);
 	sqlite3_close(db);
 }

@@ -6,7 +6,8 @@
 void insert_row(int hub_id,char *dev_name,char **sqlData)
 {
 	/* separate each item with '&'*/
-	printf("%d|%s|%s|%s|%s&",hub_id,dev_name,sqlData[1],sqlData[2],sqlData[3]);	
+	printf("%d|%s|%s|%s|%s|%s&",\
+	hub_id,dev_name,sqlData[0],sqlData[1],sqlData[2],sqlData[3]);	
 }
 int sheet_row_show(sqlite3 *db,char *table,int hub_id,char *dev_name)
 {
@@ -16,7 +17,7 @@ int sheet_row_show(sqlite3 *db,char *table,int hub_id,char *dev_name)
 	char *err = 0;
 	char **aResult;
 
-	sprintf(sql,"select * from %s where id='%d';",table,hub_id);
+	sprintf(sql,"select Lvalue,Rvalue,switch_opt,enable from %s where id='%d';",table,hub_id);
 	/* sqlite3 query, the result are stored in a array 
 	 * which was the 'aResult' point to*/
 	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
@@ -30,20 +31,27 @@ int sheet_row_show(sqlite3 *db,char *table,int hub_id,char *dev_name)
 	return 0;
 }
 int sheet_row_modify(sqlite3 *db,char *table,
-				int hub_id,char *inputStr,
+				int hub_id,char inputStr[][VALUE_SIZE],
 				char *switch_opt,char *enable_flg) 
 {
 	
 	char sql[BUF_SIZE];
 	char *zErrMsg = NULL;
 	int ret;
+
 	/*sqlite open*/
 	memset(sql,0,sizeof(sql));
-	/*
-	sprintf(sql,"update timer_tb set time='%s' \
-			switch_opt='%c' enable='%s' where id='%d'",
-			time,switch_opt,enable_flg,hub_id);
-			*/
+	sprintf(sql,"update %s set Lvalue='%s',Rvalue='%s',\
+            switch_opt='%s',enable='%s' where id='%d'",\
+			table,inputStr[0],inputStr[1],switch_opt,enable_flg,hub_id);
+	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
+	if(ret != SQLITE_OK)
+	{
+		fprintf(stderr,"SQL error:%s\n",zErrMsg);
+		sqlite3_free(zErrMsg);
+		return -1;
+	}
+	#if 0
 	sprintf(sql,"update %s set scope='%s' where id='%d'",table,inputStr,hub_id);
 	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
 
@@ -57,5 +65,6 @@ int sheet_row_modify(sqlite3 *db,char *table,
 		sqlite3_free(zErrMsg);
 		return -1;
 	}
+	#endif
 	return 0;
 }
