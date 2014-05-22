@@ -164,6 +164,7 @@ int dev_remove(sqlite3 *db,const char *id)
 	}
 	return 0;
 }
+/* get device's name by card id */
 int dev_getName(sqlite3 *db,char *table,char *id,char *dev_name)
 {
 	
@@ -174,6 +175,30 @@ int dev_getName(sqlite3 *db,char *table,char *id,char *dev_name)
 	char **aResult;
 
 	sprintf(sql,"select dev_name from %s where id='%s';",table,id);
+	/* sqlite3 query, the result are stored in a array 
+	 * which was the 'aResult' point to*/
+	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
+
+	if(row == 0||col ==0) /* empty result */
+	{
+		return -1;
+	}
+	strcpy(dev_name,aResult[1]);
+
+	sqlite3_free_table(aResult);
+	return 0;
+}
+/* get name by hub index */
+int dev_getNameByHub(sqlite3 *db,int index,char *dev_name)
+{
+
+	char sql[BUF_SIZE];	/* SQL sentene */	
+	int ret;
+	int row,col;
+	char *err = 0;
+	char **aResult;
+
+	sprintf(sql,"select dev_name from currdev_tb where hub='%d';",index);
 	/* sqlite3 query, the result are stored in a array 
 	 * which was the 'aResult' point to*/
 	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);

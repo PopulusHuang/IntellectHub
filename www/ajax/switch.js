@@ -20,8 +20,8 @@ function updateBulb(){
 		if(ack[0] != null )
 		{
 		var dev = document.getElementById("dev"+ack[0]);
-		if(dev.innerHTML != ack[1])
-			dev.innerHTML=ack[1];
+		//if(dev.innerHTML != ack[1])
+		dev.innerHTML=ack[1];
 		img = document.getElementById(ack[0])
 		img.src="../images/bulb"+ack[2]+".png";
 		}

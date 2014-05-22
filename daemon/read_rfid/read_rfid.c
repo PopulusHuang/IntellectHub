@@ -139,7 +139,7 @@ int main(void)
 				}
 				else	/* undefine device */
 				{
-					strcpy(dev_name,"undefine");	
+					strcpy(dev_name,"unkown");	
 				}
 			}
 			/* update the current devices */

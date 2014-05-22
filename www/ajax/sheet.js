@@ -37,15 +37,6 @@ function call_devlist()
 	request_xmlHttp.onreadystatechange=updateDevices;
 	request_xmlHttp.send(null);
 }
-function call_undef_devlist()
-{
-	if(request_xmlHttp==null)
-		request_ajax_init();
-	var url="../cgi-bin/undef_dev_list.cgi";
-	request_xmlHttp.open("GET",url,true);
-	request_xmlHttp.onreadystatechange=updateUndefDevices;
-	request_xmlHttp.send(null);
-}
 function call_devSubmit(row)
 {
 	if(request_xmlHttp==null)
@@ -90,17 +81,6 @@ function updateDevices()
 		if(data=='-1')
 			alert('提交失败!');
 		dev_tb.innerHTML=data;
-	}
-}
-function updateUndefDevices()
-{
-	if(request_xmlHttp.readyState==4)
-	{
-	  	var data=request_xmlHttp.responseText;	
-		var undef_dev=document.getElementById('undef_devId');
-		if(data=='-1')
-			alert('提交失败!');
-		undef_dev.innerHTML=data;
 	}
 }
 

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../share/sheet_sql.h"
-#include "../../include/cgic.h"
+#include "sheet_sql.h"
+#include "device_sql.h"
+#include "cgic.h"
 #define BUF_SIZE 1024
 int cgiMain()
 {
@@ -13,10 +14,12 @@ int cgiMain()
 	char switch_buf[5];
 	char enable_buf[5];
 	char cmd[BUF_SIZE];
+	char dev_name[DEVNAME_SIZE];
 	memset(id_buf,0,sizeof(id_buf));
 	memset(time_buf,0,sizeof(time_buf));
 	memset(switch_buf,0,sizeof(switch_buf));
 	memset(enable_buf,0,sizeof(enable_buf));
+	memset(dev_name,0,sizeof(dev_name));
     sqlite3 *db;
 	/* *.db must be under the root directory of web server,
 	 * and the directory mode of *.db must be 777*/
@@ -37,7 +40,10 @@ int cgiMain()
 	n=sheet_row_modify(db,"timer_tb",hub_id,time_buf,switch_buf,enable_buf);
 	/*update sheet*/
 	if(n==0)
-		sheet_row_show(db,"timer_tb",hub_id,"电视");
+	{
+		dev_getNameByHub(db,hub_id,dev_name);
+		sheet_row_show(db,"timer_tb",hub_id,dev_name);
+	}
 	else
 		printf("-1");
 	//printf("%s|%s|%s|%s",id_buf,time_buf,switch_buf,enable_buf);
