@@ -8,7 +8,15 @@
 <script type="text/javascript" src="js/cookie.js"></script>
 <script type="text/javascript" src="ajax/sheet.js"></script>
 	<script type="text/javascript" src="ajax/session.js"></script>
+	<script type="text/javascript" language="javascript" src="js/prototype-1.js"></script>
+	<script type="text/javascript" language="javascript" src="js/prototype-base-extensions.js"></script>
+	<script type="text/javascript" language="javascript" src="js/prototype-date-extensions.js"></script>
+	<script type="text/javascript" language="javascript" src="js/behaviour.js"></script>
+	<script type="text/javascript" language="javascript" src="js/datepicker.js"></script>
+	<script type="text/javascript" language="javascript" src="js/behaviors.js"></script>
+	<link rel="stylesheet" href="css/datepicker.css">
 	<script> check_session()</script>
+	</script>
 </head>
 <body>
 <div class="main">
@@ -56,7 +64,10 @@
 		<td>1</td>
 		<td id="devId_tr1" name="dev_name"></td>
 		<td >
-		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timer_text"value=""> 
+		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timepicker"value="" readonly>
+		 <label>--</label>
+		 <input id="inputId_tr1b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr1b')">
 		<select id="selectId_tr1"name="switch_opt" class="select_css">	
 				<option value="0">关</option>
 				<option value="1">开</option>
@@ -76,7 +87,10 @@
 			<form>
 			<td id="devId_tr2" name="dev_name"></td>
 			<td>
-		 <input id="inputId_tr2"type="TEXT"class="timer_text"name="inputVal"value=""> 
+		 <input id="inputId_tr2"type="TEXT"class="timepicker"name="inputVal"value="" readonly> 
+		 <label>--</label>
+		 <input id="inputId_tr2b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr2b')">
 			<select id="selectId_tr2"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -96,7 +110,10 @@
 			<form method="GET">
 			<td id="devId_tr3" name="dev_name"></td>
 			<td>
-		 <input id="inputId_tr3"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
+		 <input id="inputId_tr3"type="TEXT"class="timepicker"name="inputVal"value="" readonly> 
+		 <label>--</label>
+		 <input id="inputId_tr3b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr3b')">
 			<select id="selectId_tr3"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>

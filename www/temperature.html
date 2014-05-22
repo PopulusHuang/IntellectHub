@@ -56,9 +56,11 @@
 	<tr id="tr1">
 		<form>
 		<td>1</td>
-		<td id="devId_tr1" name="dev_name">电脑</td>
+		<td id="devId_tr1" name="dev_name"></td>
 		<td >
 		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timer_text"value=""> 
+		 <label>--</label>
+		 <input id="inputId_tr11" name="inputVal" type="TEXT" class="timer_text"value=""> 
 		<select id="selectId_tr1"name="switch_opt" class="select_css">	
 				<option value="0">关</option>
 				<option value="1">开</option>
@@ -76,9 +78,11 @@
 	<tr id="tr2">
 			<td>2</td>
 			<form>
-			<td id="devId_tr2" name="dev_name">空闲</td>
+			<td id="devId_tr2" name="dev_name"></td>
 			<td>
 		 <input id="inputId_tr2"type="TEXT"class="timer_text"name="inputVal"value=""> 
+		 <label>--</label>
+		 <input id="inputId_tr22" name="inputVal" type="TEXT" class="timer_text"value=""> 
 			<select id="selectId_tr2"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -98,7 +102,9 @@
 			<form method="GET">
 			<td id="devId_tr3" name="dev_name">电脑</td>
 			<td>
-		 <input id="inputId_tr3"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
+		 <input id="inputId_tr3"type="TEXT"class="timer_text"name="inputVal"value=""> 
+		 <label>--</label>
+		 <input id="inputId_tr33" name="inputVal" type="TEXT" class="timer_text"value=""> 
 			<select id="selectId_tr3"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -113,28 +119,6 @@
 			</form>
 		</td>
 			</tr>
-<!--
-	<tr id="tr4" >
-		<td>4</td>
-		<form method="POST">
-		<td id="devId_tr4" name="dev_name">饮水机</td>
-		<td>
-		 <input id="inputId_tr4"type="TEXT"class="timer_text"name="inputVal"value="21:30-22:10"> 
-			<select id="selectId_tr4"name="switch_opt"class="select_css">	
-						<option value="0">关</option>
-						<option value="1">开</option>
-			</select>
-		</td>
-		<td>
-			<label >启用</label><input checked id="enableBoxId_tr4" name="enableBox_tr4"class="timer_btn"
-			 onclick="change_color('tr4')" type="checkbox"> 
-			</td>
-		<td>
-			<button type="button" onclick="call_submit('4','temp_submit')"class="timer_btn">提交</button>
-			</form>
-		</td>
-	</tr>
--->
 	<script>call_sheet('sheet_show','temp_tb')</script>
 	</table>
 </div>

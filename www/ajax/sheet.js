@@ -150,6 +150,7 @@ function change_color(tr_num)
 	row=document.getElementById(tr_num);
 	boxrow=document.getElementById('enableBoxId_'+tr_num);
 	inputId=document.getElementById('inputId_'+tr_num);
+	inputId2=document.getElementById('inputId_'+tr_num+'b');
 	selectId=document.getElementById('selectId_'+tr_num);
 
 	if(boxrow.checked==true)
@@ -157,14 +158,16 @@ function change_color(tr_num)
 		row.style.color='green';
 		boxrow.style.color='green';
 		inputId.style.color='green';
+		inputId2.style.color='green';
 		selectId.style.color='green';
-
+		
 	}
 	else
 	{
 		row.style.color='gray';
 		boxrow.style.color='gray';
 		inputId.style.color='gray';
+		inputId2.style.color='gray';
 		selectId.style.color='gray';
 	}
 }
@@ -198,9 +201,13 @@ function request_ajax_init()
 		}  
 	}
 }
+/* get the select box's value */
 function get_select_value(selectId)
 {
 	var index=selectId.selectedIndex;
 	var value=selectId.options[index].value;
 	return value;
+}
+function clearInput(id){
+	document.getElementById(id).value="";
 }

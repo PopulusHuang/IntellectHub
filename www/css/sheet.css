@@ -9,18 +9,18 @@
 	    text-align:center;
 		}
 .timer_text{
-		width:110px;
+		width:50px;
 		color:green;
-		font-size:15px;
+		font-size:17px;
 		font-weight:bold;
 	    text-align:center;
 		background-color:transparent;	
 }
 .select_css{
 		color:green;
-		font-size:19px;
+		font-size:13px;
 		font-weight:bold;
-		color:green;
+		color:yellow;
 	    text-align:center;
 		background-color:transparent;	
 }
@@ -32,7 +32,7 @@
 }
 .timer_btn{
 		color:yellow;
-		font-size:15px;
+		font-size:13px;
 		border-style:solid;
 		font-weight:bold;
 		background-color:transparent;
