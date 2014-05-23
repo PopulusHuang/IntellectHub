@@ -26,7 +26,8 @@ int cgiMain()
 	cgiFormString("tb_name",table,VALUE_SIZE-1);
 	for(i = 0;i < 3;i++)	
 	{
-		dev_getNameByHub(db,i+1,dev_name[i]);	
+		if((n = dev_getNameByHub(db,i+1,dev_name[i]))<0)
+			printf("%d",n);
 		sheet_row_show(db,table,i+1,dev_name[i]);
 	}
 	sqlite3_close(db);

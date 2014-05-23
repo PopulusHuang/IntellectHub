@@ -100,11 +100,20 @@
 
 .datepickerControl input.current {
 	background-color:	#EBC2C0;
+			color:green;
 }
 
 .datepickerControl td.current:hover {
 	background-color:	#EBC2C0;
 }
-input.timepicker{ width: 40px; border: 1px solid #999999; 
+input.timepicker{ width: 130px; border: 1px solid #999999; 
 				background-color:transparent;	
+				text-align:left;
+}
+input.datepicker{ width: 80px; border: 1px solid #999999;
+				text-align:left;
+				color:green;
+} 
+.date { color:yellow; font:bold;
+		font-weight:bold;
 }

@@ -30,21 +30,27 @@ int cgiMain()
 		fputs("\n",stderr);
 		exit(1);
 	}
-	if(strcmp(cmd,"DEL")==0)
+	if(strcmp(cmd,"DEL")==0) //delete device 
 	{
 		n = dev_remove(db,id);		
 
-	}else if(strcmp(cmd,"MOD")==0)
+	}else if(strcmp(cmd,"MOD")==0) //modify device information
 	{
 		n = dev_modify(db,"device_tb",id,dev_name,dev_power);	
 
-	}else if(strcmp(cmd,"REG")==0)
+	}else if(strcmp(cmd,"REG")==0) //add new device
 	{
 		n = dev_register(db,id,dev_name,dev_power);		
 	}
 	if(n < 0)
+	{
 		printf("%d",n);
+	}
 	else
+	{
 		dev_sheet_list(db);
+		printf("<div class=\"hint\">当前设备</div>");
+		dev_current_list(db);
+	}
 	return 0;
 }

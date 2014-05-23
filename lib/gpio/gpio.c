@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../include/pcduino_gpio.h"
+#include "pcduino_gpio.h"
 #define CMD_SIZE 128
 /* set pin mode */
 int gpio_pinMode(int pin,int mode)
@@ -38,22 +38,3 @@ int gpio_pinStat(int pin)
 	pclose(fp);
 	return value;
 }
-/*
-int main(int argc,char **argv)
-{
-	int pin;	
-	int value;	
-	if(argc != 3)
-	{
-		printf("Usage:%s [pin] 0/1\n",argv[0]);	
-		exit(0);
-	}
-	pin = atoi(argv[1]); 
-	value = atoi(argv[2]);
-
-	printf("old status:%d\n",gpio_pinStat(pin));
-
-	gpio_setPin(pin,value);
-	printf("new status:%d\n",gpio_pinStat(pin));
-}
-*/

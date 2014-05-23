@@ -1,12 +1,16 @@
 orignal=device_manage
-obj=$(orignal).o ../share/device_sql.o 
+obj=$(orignal).o 
 CC=gcc
-CGIDIR=../../www/cgi-bin/
-LIBPATH=../../lib
-INCPATH=../../include
-LIB=cgic
+DIR=$(shell pwd)/../../
+CGIDIR=$(DIR)/www/cgi-bin/
+
+LIBPATH=-L$(DIR)/lib
+INCPATH=-I$(DIR)/include
+
+LIBS=-lcgic -lsqlite3 -ldevicesql
 app=$(CGIDIR)$(orignal).cgi
-CFLAGS=-L$(LIBPATH) -I$(INCPATH) -l$(LIB) -lsqlite3 
+
+CFLAGS=$(LIBPATH) $(INCPATH) $(LIBS) 
 $(app):$(obj)
 	$(CC) -o $@  $(obj) $(CFLAGS)
 cleanobj:

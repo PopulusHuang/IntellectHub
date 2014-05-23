@@ -51,10 +51,12 @@
    
 <!--content-->
 <div class="content">
+
+
 	<table id="timer_tb"class="timer_table" border="1">
 		<tr >
 		<th>插口</th>
-		<th>设备</th>
+		<th>当前设备</th>
 		<th>定时时间</th>
 		<th>状态</th>
 		<th>操作</th>
@@ -67,8 +69,6 @@
 		 <input id="inputId_tr1" name="inputVal" type="TEXT" class="timepicker"value="" readonly>
 		 <label>--</label>
 		 <input id="inputId_tr1b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
-		 <!-- clean input box -->
-		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr1b')">
 		<select id="selectId_tr1"name="switch_opt" class="select_css">	
 				<option value="0">关</option>
 				<option value="1">开</option>
@@ -80,6 +80,7 @@
 			</td>
 		<td>
 	<button type="button" onclick="call_submit('1','timer_sheet_submit')"class="timer_btn">提交</button>
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr1')">
 		</form>
 		</td>
 	</tr>
@@ -91,7 +92,6 @@
 		 <input id="inputId_tr2"type="TEXT"class="timepicker"name="inputVal"value="" readonly> 
 		 <label>--</label>
 		 <input id="inputId_tr2b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
-		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr2b')">
 			<select id="selectId_tr2"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
@@ -104,6 +104,7 @@
 		<td>
 			<button type="button" onclick="call_submit('2','timer_sheet_submit')"class="timer_btn">提交</button>
 			</form>
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr2')">
 		</td>
 			</tr>
 	<tr id="tr3" >
@@ -114,24 +115,38 @@
 		 <input id="inputId_tr3"type="TEXT"class="timepicker"name="inputVal"value="" readonly> 
 		 <label>--</label>
 		 <input id="inputId_tr3b" name="inputVal" type="TEXT" class="timepicker"value="" readonly> 
-		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr3b')">
 			<select id="selectId_tr3"name="switch_opt"class="select_css">	
 						<option value="0">关</option>
 						<option value="1">开</option>
 			</select>
 			</td>
 			<td>
-			<label >启用</label><input unchecked id="enableBoxId_tr3" class="timer_btn"
-			 onclick="change_color('tr3')" type="checkbox"> 
+			<label >启用</label><input unchecked id="enableBoxId_tr3" class="timer_btn" onclick="change_color('tr3')" type="checkbox"> 
 			</td>
 		<td>
 			<button type="button" onclick="call_submit('3','timer_sheet_submit')" class="timer_btn">提交</button>
+		 <input type="button" value="清空" class="timer_btn"onclick="clearInput('inputId_tr3')">
 			</form>
 		</td>
 			</tr>
-	<script>call_sheet('sheet_show','timer_tb')</script>
+
+
 	</table>
-	<div id="test"></div>
+		<label class="date">起始:</label>
+		 <input id="inputId_date1" name="inputVal" type="TEXT" class="datepicker"value="" readonly/>
+		<label class="date">结束:</label>
+		 <input id="inputId_date2" name="inputVal" type="TEXT" class="datepicker"value="" readonly/> 
+
+			<label class="date">插口:</label>
+			<select id="selectId_date"name="switch_opt"class="timer_btn">	
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+			</select>
+		<button class="timer_btn" onclick="add_date()">添加日期</button>
+		<button class="timer_btn" onclick="remove_date()">移除日期</button>
+
+	<script>call_sheet('sheet_show','timer_tb')</script>
 </div>
 <!-- sidebar gadget -->
   <div class="gadget">

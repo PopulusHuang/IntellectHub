@@ -51,20 +51,5 @@ int sheet_row_modify(sqlite3 *db,char *table,
 		sqlite3_free(zErrMsg);
 		return -1;
 	}
-	#if 0
-	sprintf(sql,"update %s set scope='%s' where id='%d'",table,inputStr,hub_id);
-	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
-
-	sprintf(sql,"update %s set switch_opt='%s' where id='%d'",table,switch_opt,hub_id);
-	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
-	sprintf(sql,"update %s set enable='%s' where id='%d'",table,enable_flg,hub_id);
-	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
-	if(ret != SQLITE_OK)
-	{
-		fprintf(stderr,"SQL error:%s\n",zErrMsg);	
-		sqlite3_free(zErrMsg);
-		return -1;
-	}
-	#endif
 	return 0;
 }

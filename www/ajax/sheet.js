@@ -1,4 +1,5 @@
 var TAB_GLOBEL=true;	/*true:update Sheet;false:update row*/
+var DEV_MOD_SUBMIT=false;	
 var request_xmlHttp=null;
 
 function call_submit(row,cgi_name)
@@ -14,8 +15,10 @@ function call_submit(row,cgi_name)
 	var switch_opt=get_select_value(selectId);
 	var statId=document.getElementById('enableBoxId_'+row_num); 
 	var enable_flg=(statId.checked==true)?'on':'off';
+	var startTime = inputId.value;
+	var endTime = inputId2.value;
 
-	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(inputId.value)+"&inputVal2="+escape(inputId2.value)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
+	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(startTime)+"&inputVal2="+escape(endTime)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
 
 	request_xmlHttp.open("GET",url,true);
 	request_xmlHttp.onreadystatechange=updateSheet;
@@ -61,6 +64,7 @@ function call_devSubmit(row)
 	request_xmlHttp.open("GET",url,true);
 	request_xmlHttp.onreadystatechange=updateDevices;
 	request_xmlHttp.send(null);
+	DEV_MOD_SUBMIT=true;
 }
 /* submit devices register information */
 function call_devReg()
@@ -86,6 +90,11 @@ function updateDevices()
 		var dev_tb=document.getElementById('dev_tbId');
 		if(data=='-1')
 			alert('提交失败!');
+		else if(DEV_MOD_SUBMIT == true)
+		{
+			alert('提交成功!');
+			DEV_MOD_SUBMIT=false;
+		}
 		dev_tb.innerHTML=data;
 	}
 }
@@ -154,6 +163,58 @@ function set_inputScope(tr_num,Lvalue,Rvalue)
 	inputId.value=Lvalue;
 	inputId2.value=Rvalue;
 }
+function add_date()
+{
+	var selectId=document.getElementById('selectId_date');
+	var row = get_select_value(selectId);
+	var inputId=document.getElementById('inputId_tr'+row);	
+	var inputId2=document.getElementById('inputId_tr'+row+'b');	
+
+	var startDate='/'+document.getElementById('inputId_'+'date1').value;
+	var endDate='/'+document.getElementById('inputId_'+'date2').value;
+	var startTime=inputId.value ;
+	var endTime=inputId2.value ;
+	if(!is_contain_date(startTime)) //not contain date
+	{
+		startTime += startDate;	
+		inputId.value=startTime;
+	}
+	if(!is_contain_date(endTime)) //not contain date
+	{
+		endTime += endDate;	
+		inputId2.value=endTime;
+	}
+}
+function is_contain_date(str)
+{
+	if(str.indexOf('/') >= 0) //contain date
+		return true;
+	return false;
+}
+function remove_date()
+{
+	var selectId=document.getElementById('selectId_date');
+	var row = get_select_value(selectId);
+
+	var inputId=document.getElementById('inputId_tr'+row);	
+	var inputId2=document.getElementById('inputId_tr'+row+'b');	
+	var startTime=inputId.value ;
+	var endTime=inputId2.value ;
+	var filter;
+	if(is_contain_date(startTime))
+	{
+		filter = startTime.split('/');
+		startTime = filter[0];
+		inputId.value=startTime;
+	}
+	if(is_contain_date(endTime))
+	{
+		filter = endTime.split('/');
+		endTime = filter[0];
+		inputId2.value=endTime;
+	}
+}
+/* change color to green when the row is selected*/
 function change_color(tr_num)
 {
 	row=document.getElementById(tr_num);
@@ -218,5 +279,8 @@ function get_select_value(selectId)
 	return value;
 }
 function clearInput(id){
-	document.getElementById(id).value="";
+	var inputId1=document.getElementById(id);
+	var inputId2=document.getElementById(id+'b');
+	inputId1.value="";
+	inputId2.value="";
 }
