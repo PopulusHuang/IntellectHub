@@ -8,6 +8,15 @@
 		font-weight:bold;
 	    text-align:center;
 		}
+.temp_table{
+		color:green;
+		background:url(../images/bat_bg.png);
+		font-size:15px;
+		padding:20 ;
+		border-collapse:0px;
+		font-weight:bold;
+	    text-align:center;
+}
 .timer_text{
 		width:50px;
 		color:green;
@@ -39,6 +48,10 @@
 }
 .uncheck_color{color:gray;}
 .timer_table td {
+		font-size:15px;
+		padding:15px;
+}
+.temp_table td{
 		font-size:15px;
 		padding:15px;
 }

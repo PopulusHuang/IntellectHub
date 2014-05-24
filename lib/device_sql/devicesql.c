@@ -273,17 +273,17 @@ int dev_select(sqlite3 *db,char *table,
 }
 #if 1
 /* get the timer task or temperature control task */
-int dev_getTask(sqlite3 *db,HUB_TASK *hubTask,int index)
+int dev_getTask(sqlite3 *db,char *table,HUB_TASK *hubTask,int index)
 {
 	char needle[5];
 	memset(needle,0,sizeof(needle));
 
 	sprintf(needle,"%d",index+1);
 	#if 1
- 	dev_select(db,"timer_tb","Lvalue","id", needle,hubTask[index].Lvalue);
- 	dev_select(db,"timer_tb","Rvalue","id", needle,hubTask[index].Rvalue);
- 	dev_select(db,"timer_tb","switch_opt","id", needle,hubTask[index].switch_opt);
- 	dev_select(db,"timer_tb","enable","id", needle,hubTask[index].enable);
+ 	dev_select(db,table,"Lvalue","id", needle,hubTask[index].Lvalue);
+ 	dev_select(db,table,"Rvalue","id", needle,hubTask[index].Rvalue);
+ 	dev_select(db,table,"switch_opt","id", needle,hubTask[index].switch_opt);
+ 	dev_select(db,table,"enable","id", needle,hubTask[index].enable);
 	#endif
 	return 0;
 }

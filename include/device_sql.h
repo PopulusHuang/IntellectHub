@@ -37,6 +37,6 @@ int dev_sheet_list(sqlite3 *db);
 int dev_current_list(sqlite3 *db);
 int dev_getName(sqlite3 *db,char *table,char *id,char *dev_name);
 int dev_getNameByHub(sqlite3 *db,int index,char *dev_name);
-int dev_getTask(sqlite3 *db,HUB_TASK *hubTask,int index);
+int dev_getTask(sqlite3 *db,char *table,HUB_TASK *hubTask,int index);
 void dev_open(sqlite3 *db,char *path);
 #endif

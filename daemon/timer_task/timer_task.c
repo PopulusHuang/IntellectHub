@@ -129,7 +129,7 @@ int timer_run()
 	memset(task,0,sizeof(task));
 	for(i = 0;i < 3;i++)		
 	{
-		dev_getTask(db,task,i);
+		dev_getTask(db,"timer_tb",task,i);
 		timer_hubtask(task,i);
 	}
 	sleep(1);
