@@ -48,7 +48,7 @@ a.rm, a.com { padding:0; text-decoration:none;}
  		 float:right;
  }
 div.bulb{
-		padding:20px 30px;width:500px;height:400;}
+		padding:20px 80px;width:500px;height:400;float:right;}
 div.bulb_lf{float:left;}
 div.bulb_rt{float:right;}
 div.bulb label{color:#81F781;font-size:23px;text-align:left;}

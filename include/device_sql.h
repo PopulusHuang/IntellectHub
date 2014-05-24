@@ -2,18 +2,19 @@
 #define _DEVICE_SQL_
 #include <sqlite3.h>
 #define DEVNAME_SIZE 30
-
+#define VALUE_SIZE 128
 typedef struct hubtime{
 	int hour;
-	int minutes;
+	int min;
 	int day;
-	int month;
+	int mon;
+	int year;
 }HUB_TIME;
-typedef struct hubalarm{
+typedef struct hubtask{
 	char Lvalue[VALUE_SIZE];
 	char Rvalue[VALUE_SIZE];
 	char switch_opt[2];
-	char enableflg[2];
+	char enable[2];
 }HUB_TASK;
 
 int dev_update(sqlite3 *db,char *table,
@@ -36,6 +37,6 @@ int dev_sheet_list(sqlite3 *db);
 int dev_current_list(sqlite3 *db);
 int dev_getName(sqlite3 *db,char *table,char *id,char *dev_name);
 int dev_getNameByHub(sqlite3 *db,int index,char *dev_name);
-int dev_getTask(HUB_TASK *hubTask,int index);
-void dev_open(sqlite3 *db);
+int dev_getTask(sqlite3 *db,HUB_TASK *hubTask,int index);
+void dev_open(sqlite3 *db,char *path);
 #endif

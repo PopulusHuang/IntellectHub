@@ -2,16 +2,8 @@
 #include "device_sql.h"
 #include <stdlib.h>
 #include <string.h>
+
 #define BUF_SIZE  500
-void dev_open(sqlite3 *db,char *path)
-{
-	int ret = sqlite3_open(path,&db);
-	if(ret != SQLITE_OK)
-	{
-		fputs(sqlite3_errmsg(db),stderr);
-		exit(1);
-	}
-}
 void insert_row(int index,char *id,char *dev_name,char *dev_power)
 {
 	printf("<tr><td>%d</td><td id=\"dev_id%d\">%s</td>",index,index,id);
@@ -198,8 +190,20 @@ int dev_getName(sqlite3 *db,char *table,char *id,char *dev_name)
 	int row,col;
 	char *err = 0;
 	char **aResult;
+#if 0
+	sprintf(sql,"select dev_name from %s where id='%s';",table,id);
+	/* sqlite3 query, the result are stored in a array 
+	 * which was the 'aResult' point to*/
+	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
 
+	if(row == 0||col ==0) /* empty result */
+	{
+		return -1;
+	}
+	strcpy(dev_name,aResult[1]);
+#else
 	dev_select(db,table,"dev_name","id",id,dev_name);
+#endif
 	sqlite3_free_table(aResult);
 	return 0;
 }
@@ -213,8 +217,24 @@ int dev_getNameByHub(sqlite3 *db,int index,char *dev_name)
 
 	memset(hub,0,sizeof(hub));
 	sprintf(hub,"%d",index);
+#if 0
+	int row,col;
+	char *err = 0;
+	char **aResult;
+	sprintf(sql,"select dev_name from currdev_tb where hub='%d';",index);
+	/* sqlite3 query, the result are stored in a array 
+	 * which was the 'aResult' point to*/
+	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
 
+	if(row == 0||col ==0) /* empty result */
+	{
+		return -1;
+	}
+	strcpy(dev_name,aResult[1]);
+	sqlite3_free_table(aResult);
+#else
 	ret = dev_select(db,"currdev_tb","dev_name","hub",hub,dev_name);
+#endif
 
 	return ret;
 }
@@ -242,6 +262,18 @@ int dev_update(sqlite3 *db,char *table,
 		sqlite3_free(zErrMsg);
 		return -1;
 	}
+	#if 0
+	/* update device name */
+	sprintf(sql,"update currdev_tb set dev_name='%s' where hub='%d'",
+			dev_name,index);
+	ret = sqlite3_exec(db,sql,NULL,NULL,&zErrMsg);
+	if(ret != SQLITE_OK)
+	{
+		fprintf(stderr,"SQL error:%s\n",zErrMsg);	
+		sqlite3_free(zErrMsg);
+		return -1;
+	}
+	#endif
 	return 0;
 }
 /*	select 'destSect' base on 'baseSect',
@@ -271,20 +303,3 @@ int dev_select(sqlite3 *db,char *table,
 	sqlite3_free_table(aResult);
 	return 0;
 }
-#if 1
-/* get the timer task or temperature control task */
-int dev_getTask(sqlite3 *db,HUB_TASK *hubTask,int index)
-{
-	char needle[5];
-	memset(needle,0,sizeof(needle));
-
-	sprintf(needle,"%d",index+1);
-	#if 1
- 	dev_select(db,"timer_tb","Lvalue","id", needle,hubTask[index].Lvalue);
- 	dev_select(db,"timer_tb","Rvalue","id", needle,hubTask[index].Rvalue);
- 	dev_select(db,"timer_tb","switch_opt","id", needle,hubTask[index].switch_opt);
- 	dev_select(db,"timer_tb","enable","id", needle,hubTask[index].enable);
-	#endif
-	return 0;
-}
-#endif

@@ -38,3 +38,25 @@ int gpio_pinStat(int pin)
 	pclose(fp);
 	return value;
 }
+void switch_on(int pin)
+{
+	if(pin == 4)
+		gpio_setPin(pin,LOW);
+	else
+		gpio_setPin(pin,HIGH);
+}
+void switch_off(int pin)
+{
+	if(pin == 4)
+		gpio_setPin(pin,HIGH);
+	else
+		gpio_setPin(pin,LOW);
+}
+/* switch_opt value-- 0:trun off 1:trun on*/
+void switch_detect(int pin,int switch_opt)
+{
+		if(switch_opt == 0) 
+			switch_off(pin);
+		else
+			switch_on(pin);
+}

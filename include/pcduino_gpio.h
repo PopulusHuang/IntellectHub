@@ -13,4 +13,7 @@
 int gpio_pinMode(int pinID,int mode);
 int gpio_setPin(int pinID,int value);
 int gpio_pinStat(int pinID);
+void switch_on(int pin);
+void switch_off(int pin);
+void switch_detect(int pin,int switch_opt);
 #endif
