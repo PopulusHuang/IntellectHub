@@ -5,8 +5,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<link href="css/sheet.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="ajax/sheet.js" charset="utf8"></script>
+	<link href="css/personal.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="ajax/session.js"></script>
+	<script type="text/javascript" src="js/personal.js"></script>
 	<script> check_session()</script>
 </head>
 
@@ -24,8 +25,8 @@
         <li ><a href="index.html">首页</a></li>
         <li><a href="timer.html">定时任务</a></li>
         <li ><a href="temperature.html">温度控制</a></li>
-        <li class="active"><a href="device.html">设备管理</a></li>
-        <li><a href="personal.html">个人中心</a></li>
+        <li><a href="device.html">设备管理</a></li>
+        <li class="active"><a href="personal.html">个人中心</a></l>
       </ul>
     </div>
     <div class="clr"></div>
@@ -43,39 +44,30 @@
    
 <!--content-->
 <div class="content">
-	<table class="dev_table" border="1">
-	<div class="hint">已注册设备</div>
-	<tr>
-		<th>序号</th>
-		<th>设备ID</th>
-		<th>设备名称</th>
-		<th>功率(w)</th>	
-		<th>操作</th>
-		<th>备注</th>
-	</tr>
-	<tbody id="dev_tbId">
-	</tbody>
-	<script>call_devlist()</script>
-	</table> 
-
-	<button type="button" class="timer_btn"onclick="show_table()">添加</button>
-	<table id="reg_id" class="dev_table" border="1">
-	</table>
+	<label class="hint">旧密码:&nbsp;&nbsp;&nbsp;</label>
+	<input type="password"class="timer_btn" name="old_password"/> </br>
+	<label class="hint">新密码:&nbsp;&nbsp;&nbsp;</label>
+	    <input type="password"class="timer_btn" name="new_password"/></br>
+	<label class="hint">确认密码:</label>
+	    <input type="password" class="timer_btn"name="re_password"/> </br></br>
+    <input type="button"value="提交"class="timer_btn" id="check" onclick="checkEmail()"/> 
+    <input type="button"value="恢复默认"class="timer_btn" id="check" onclick="checkEmail()"/> 
 </div>
 <!-- sidebar gadget -->
+
   <div class="gadget">
         <h2 class="star"><span>Sidebar</span> Menu</h2>
 		<ul class="sb_menu">
-        	<li ><a href="index.html">首页</a></li>
-        	<li><a href="timer.html">定时任务</a></li>
-        	<li ><a href="temperature.html">温度控制</a></li>
-        	<li class="active"><a href="device.html">设备管理</a></li>
-        	<li><a href="personal.html">个人中心</a></li>
+        	<li ><a href="personal.html">帐户信息</a></li>
+        	<li class="active"><a href="passwd.html">修改密码</a></li>
+        	<li ><a href="network.html">网络设置</a></li>
+        	<li><a href="device.html">设备管理</a></li>
 		</ul>
   </div>
 <!-- footer -->
   <div class="footer">
       © Copyright <a href="#">MyWebSite</a>.
   </div>
+
 </div>
 </body></html>

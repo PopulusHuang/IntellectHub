@@ -1,11 +1,12 @@
-obj=login.o
+ORG=update_user
+obj=$(ORG).o
 CC=gcc
 DIR=$(shell pwd)/../../
 CGIDIR=$(DIR)/www/cgi-bin/
 LIBPATH=-L$(DIR)/lib
 INCPATH=-I$(DIR)/include
 LIBS=-lcgic -lsession -lsqlite3 -laccount
-app=$(CGIDIR)login.cgi
+app=$(CGIDIR)$(ORG).cgi
 CFLAGS=$(LIBPATH) $(INCPATH) $(LIBS) 
 $(app):$(obj)
 	$(CC) -o $@  $(obj) $(CFLAGS)

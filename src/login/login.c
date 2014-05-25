@@ -39,7 +39,6 @@ int cgiMain() {
 	ACCOUNT user;
 	int n;
 	int ret;
-//	setCookie();
     if(session_start() < 0)
     {
 	perror("session start");
