@@ -7,7 +7,7 @@
 	<link href="css/sheet.css" rel="stylesheet" type="text/css">
 	<link href="css/personal.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="ajax/session.js"></script>
-	<script type="text/javascript" src="js/personal.js"></script>
+	<script type="text/javascript" src="ajax/personal.js"></script>
 	<script> check_session()</script>
 </head>
 
@@ -48,11 +48,12 @@
 	<label class="hint">IP地址:&nbsp;&nbsp;&nbsp;&nbsp;</label>
 	<input id="ip" class="timer_btn" /></br>
 	<label class="hint">子网掩码:</label>
-	<input id="mask" class="timer_btn"/></br>
+	<input id="netmask" class="timer_btn"/></br>
 	<label class="hint">网&nbsp;&nbsp;&nbsp;关:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	<input id="ip" class="timer_btn"/></br></br>
-    <input type="button"value="提交"class="timer_btn" id="check" onclick="checkEmail()"/> 
-    <input type="button"value="恢复默认"class="timer_btn" id="check" onclick="checkEmail()"/> 
+	<input id="gateway" class="timer_btn"/></br></br>
+    <input type="button"value="提交"class="timer_btn" onclick="call_updateNet()"/> 
+    <input type="button"value="恢复默认"class="timer_btn"  onclick="set_defaultNet()"/> 
+	<script>call_listNet()</script>
 </div>
 <!-- sidebar gadget -->
 

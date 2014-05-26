@@ -240,6 +240,7 @@ int dev_update(sqlite3 *db,char *table,
 	{
 		fprintf(stderr,"SQL error:%s\n",zErrMsg);	
 		sqlite3_free(zErrMsg);
+		printf("-1");
 		return -1;
 	}
 	return 0;
@@ -288,3 +289,27 @@ int dev_getTask(sqlite3 *db,char *table,HUB_TASK *hubTask,int index)
 	return 0;
 }
 #endif
+int dev_getNet(sqlite3 *db,char *ip,char *netmask,char *gateway)
+{
+	int ret1,ret2,ret3;
+	ret1=dev_select(db,"net_tb","ip","id","1",ip);		
+	ret2=dev_select(db,"net_tb","netmask","id","1",netmask);		
+	ret3=dev_select(db,"net_tb","gateway","id","1",gateway);		
+	if(ret1 < 0||ret2 < 0 ||ret3 < 0)
+	{
+		return -1;	
+	}
+	return 0;
+}
+int dev_modifyNet(sqlite3 *db,char *ip,char *netmask,char *gateway)
+{
+	int ret1,ret2,ret3;
+	ret1=dev_update(db,"net_tb","ip",ip,"id","1");	
+	ret2=dev_update(db,"net_tb","netmask",netmask,"id","1");	
+	ret3=dev_update(db,"net_tb","gateway",gateway,"id","1");	
+	if(ret1 < 0||ret2 < 0 ||ret3 < 0)
+	{
+		return -1;	
+	}
+	return 0;
+}

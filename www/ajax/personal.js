@@ -1,8 +1,5 @@
 var request_xmlHttp=null;
-function hello()
-{
-	alert('hello');
-}
+/* call modify user information */
 function call_updateUser()
 {
 	if(request_xmlHttp==null)
@@ -20,6 +17,7 @@ function call_updateUser()
 	request_xmlHttp.onreadystatechange=updateUser;
 	request_xmlHttp.send(null);
 }
+/* call list user information */
 function call_listUser()
 {
 	if(request_xmlHttp==null)
@@ -57,6 +55,79 @@ function call_updatePasswd()
 	request_xmlHttp.onreadystatechange=updatePasswd;
 	request_xmlHttp.send(null);
 }
+function call_updateNet()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var ip = document.getElementById('ip');
+	var netmask = document.getElementById('netmask');
+	var gateway = document.getElementById('gateway');
+	if(!isIPa(ip.value))
+	{
+		alert('ip地址不合法！');	
+		return -1;
+	}
+	if(!isMask(netmask.value))
+	{
+		alert('子网掩码不合法');	
+		return -1;
+	}
+	if(!isIPa(gateway.value))
+	{
+		alert('网关地址不合法!');	
+		return -1;
+	}
+	var url="../cgi-bin/update_net.cgi?ip="+escape(ip.value)+"&netmask="+escape(netmask.value)+"&gateway="+escape(gateway.value);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateNet;
+	request_xmlHttp.send(null);
+
+}
+function call_listNet()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var url="../cgi-bin/list_net.cgi";	
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updatelistNet;
+	request_xmlHttp.send(null);
+	
+}
+function updatelistNet()
+{
+	if(request_xmlHttp.readyState==4)
+	{
+  		var ack=request_xmlHttp.responseText;	
+		var data=ack.split(":");
+		var ip = document.getElementById('ip');
+		var netmask = document.getElementById('netmask');
+		var gateway = document.getElementById('gateway');
+		ip.value=data[1];
+		netmask.value=data[2];
+		gateway.value=data[3];
+	}
+}
+function updateNet()
+{
+	if(request_xmlHttp.readyState==4)
+	{
+  		var data=request_xmlHttp.responseText;	
+  		var ack=request_xmlHttp.responseText;	
+		var data=ack.split(":");
+		var ip = document.getElementById('ip');
+		var netmask = document.getElementById('netmask');
+		var gateway = document.getElementById('gateway');
+		if( data[0] == '0')
+		{
+			ip.value=data[1];
+			netmask.value=data[2];
+			gateway.value=data[3];
+			alert('修改成功！');
+		}
+		else
+			alert('修改失败!');
+	}
+}
 function updatePasswd()
 {
 	if(request_xmlHttp.readyState==4)
@@ -76,7 +147,6 @@ function updateUser()
 	
 	if(request_xmlHttp.readyState==4)
 	{
-	alert(data);
   	var data=request_xmlHttp.responseText;	
 	var ack=data.split(':');
 	var userId=document.getElementById('user');
@@ -146,4 +216,13 @@ function request_ajax_init()
 			request_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");  
 		}  
 	}
+}
+function set_defaultNet()
+{
+	var ip = document.getElementById('ip');
+	var netmask = document.getElementById('netmask');
+	var gateway = document.getElementById('gateway');
+	ip.value="192.168.1.8";
+	netmask.value="255.255.255.0";
+	gateway.value="192.168.1.1";
 }
