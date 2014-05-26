@@ -7,7 +7,7 @@
 	<link href="css/sheet.css" rel="stylesheet" type="text/css">
 	<link href="css/personal.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="ajax/session.js"></script>
-	<script type="text/javascript" src="js/personal.js"></script>
+	<script type="text/javascript" src="ajax/personal.js"></script>
 	<script> check_session()</script>
 </head>
 
@@ -44,13 +44,19 @@
    
 <!--content-->
 <div class="content">
-	<label class="hint">旧密码:&nbsp;&nbsp;&nbsp;</label>
-	<input type="password"class="timer_btn" name="old_password"/> </br>
-	<label class="hint">新密码:&nbsp;&nbsp;&nbsp;</label>
-	    <input type="password"class="timer_btn" name="new_password"/></br>
+	<label class="hint">用户名:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input id="user" value="" class="timer_btn" onkeyup="value=value.replace(/[\W]/g,'') "
+	    onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d_]/g,''))"></br></br> 
+	<label class="hint">旧密码:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input id="old_passwd" value="" type="password"class="timer_btn" onkeyup="value=value.replace(/[\W]/g,'') "
+	    onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d_]/g,''))"></br></br>
+	<label class="hint">新密码:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input id="new_passwd" value="" type="password"class="timer_btn" onkeyup="value=value.replace(/[\W]/g,'') "
+	    onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d_]/g,''))"></br></br>
 	<label class="hint">确认密码:</label>
-	    <input type="password" class="timer_btn"name="re_password"/> </br></br>
-    <input type="button"value="提交"class="timer_btn" id="check" onclick="checkEmail()"/> 
+	<input id="re_passwd" value="" type="password"class="timer_btn" onkeyup="value=value.replace(/[\W]/g,'') "
+	    onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d_]/g,''))"></br></br>
+    <input type="button"value="提交"class="timer_btn" id="check" onclick="call_updatePasswd()"/> 
     <input type="button"value="恢复默认"class="timer_btn" id="check" onclick="checkEmail()"/> 
 </div>
 <!-- sidebar gadget -->

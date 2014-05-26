@@ -97,7 +97,7 @@ int account_modify_user(sqlite3 *db,char *username,char *email,char *passwd)
 	}
 	else
 	{
-		printf("Modify user succeed!\n");	
+		//printf("Modify user succeed!\n");	
 		return USER_OK;
 	}
 	return USER_ERR;
@@ -115,13 +115,14 @@ int account_modify_passwd(sqlite3 *db,char *username,char *passwd)
 	{
 		fprintf(stderr,"SQL error:%s\n",zErrMsg);	
 		sqlite3_free(zErrMsg);
+		return PASSWD_ERR;
 	}
 	else
 	{
-		printf("Modify password succeed!\n");	
+		//printf("Modify password succeed!\n");	
 		n = PASSWD_OK;
 	}
-	return 0;
+	return n;
 }
 /* cut blank character */
 void cut_blank(char *src,char *dest)
