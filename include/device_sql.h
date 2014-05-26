@@ -41,4 +41,7 @@ int dev_getTask(sqlite3 *db,char *table,HUB_TASK *hubTask,int index);
 void dev_open(sqlite3 *db,char *path);
 int dev_getNet(sqlite3 *db,char *ip,char *netmask,char *gateway);
 int dev_modifyNet(sqlite3 *db,char *ip,char *netmask,char *gateway);
+int dev_modifyNet(sqlite3 *db,char *ip,char *netmask,char *gateway);
+int dev_getMQ2(sqlite3 *db,char *outMQ2,char *enable);
+int dev_modifyMQ2(sqlite3 *db,char *inMQ2,char *enable);
 #endif

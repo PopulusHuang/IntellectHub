@@ -2,9 +2,19 @@
 		color:yellow;
 		font-weight:bold;
 }
-.comment{
-		color:green;
+.sideHint{
+		color:#7FFFD4;
+}
+.Mhint{
+		color:gray;
 		font-size:15px;
+		font-weight:bold;
+		background-color:transparent;
+}
+.Mcomment{
+		color:gray;
+		font-size:15px;
+		font-weight:bold;
 }
 .personal_text{
 		font-size:15px;

@@ -44,16 +44,15 @@
    
 <!--content-->
 <div class="content">
-	<h2 class="titleHint">网络相关</h2>
-	<label class="hint">IP地址:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	<input id="ip" class="timer_btn" /></br>
-	<label class="hint">子网掩码:</label>
-	<input id="netmask" class="timer_btn"/></br>
-	<label class="hint">网&nbsp;&nbsp;&nbsp;关:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	<input id="gateway" class="timer_btn"/></br></br>
-    <input type="button"value="提交"class="timer_btn" onclick="call_updateNet()"/> 
-    <input type="button"value="恢复默认"class="timer_btn"  onclick="set_defaultNet()"/> 
-	<script>call_listNet()</script>
+	<label id="MQ2hint"class="Mhint">烟雾报警阀值:</label>
+	<input id="MQ2" style="width:30px;" value=""/><label id="Mcomment"class="Mcomment">(当实际值大于阀值时开始报警,有烟雾时感应值一般为29)</label> 
+	</br>
+			<label id="MQ2hint2"class="Mhint">启用烟雾报警</label>
+			<input id="eBox" class="timer_btn" name="enableBox" onclick="change_boxColor()" type="checkbox"> </br>
+    <input type="button"value="提交"class="timer_btn" onclick="call_updateMQ2()"/>
+    <input type="button"value="恢复默认"class="timer_btn"  onclick="set_defaultMQ2()"/> 
+	<script>call_listMQ2()</script>
+	<script>change_boxColor()</script>
 </div>
 <!-- sidebar gadget -->
 
@@ -62,8 +61,8 @@
 		<ul class="sb_menu">
         	<li ><a href="personal.html">帐户信息</a></li>
         	<li ><a href="passwd.html">修改密码</a></li>
-        	<li class="active"><a href="network.html">网络设置</a></li>
-        	<li ><a href="MQ2.html">烟雾报警</a></li>
+        	<li ><a href="network.html">网络设置</a></li>
+        	<li class="active"><a href="MQ2.html">烟雾报警</a></li>
 		</ul>
   </div>
 <!-- footer -->

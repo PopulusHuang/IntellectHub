@@ -7,6 +7,11 @@ function call_updateUser()
 	var userId = document.getElementById('user');
 	var emailId = document.getElementById('email');
 	var passwdId = document.getElementById('passwd');
+	if(passwd.value=='')
+	{
+		alert('请输入密码!');	
+		return -1;
+	}
 	if(!isEmail(emailId.value))
 	{
 		alert("邮箱不合法！");
@@ -24,7 +29,7 @@ function call_listUser()
 		request_ajax_init();
 	var url="../cgi-bin/list_user.cgi";	
 	request_xmlHttp.open("GET",url,true);
-	request_xmlHttp.onreadystatechange=updateUser;
+	request_xmlHttp.onreadystatechange=updatelistUser;
 	request_xmlHttp.send(null);
 }
 function call_updatePasswd()
@@ -92,6 +97,58 @@ function call_listNet()
 	request_xmlHttp.onreadystatechange=updatelistNet;
 	request_xmlHttp.send(null);
 	
+}
+function call_listMQ2()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var url="../cgi-bin/list_MQ2.cgi";	
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updatelistMQ2;
+	request_xmlHttp.send(null);
+}
+function call_updateMQ2()
+{
+	if(request_xmlHttp==null)
+		request_ajax_init();
+	var MQ2=document.getElementById('MQ2');
+	var boxId=document.getElementById('eBox');
+	var enable='off';
+	if(boxId.value==true)
+	{
+		enable='on';	
+	}
+	var url="../cgi-bin/update_MQ2.cgi?MQ2="+escape(MQ2.value)+"&enable="+escape(enable);
+	request_xmlHttp.open("GET",url,true);
+	request_xmlHttp.onreadystatechange=updateMQ2;
+	request_xmlHttp.send(null);
+}
+function updateMQ2()
+{
+	if(request_xmlHttp.readyState==4)
+	{
+  		var ack=request_xmlHttp.responseText;	
+		var data=ack.split(':');
+		if(data[0]=='-1')
+			alert('修改失败!');
+		var MQ2 = document.getElementById('MQ2');
+		var eBox = document.getElementById('eBox');
+		MQ2.value=data[1];
+		if(data[2]=="on")
+			eBox.value=true;
+		else
+			eBox.value=false;
+		alert('修改成功!');
+	}
+}
+function updatelistMQ2()
+{
+	if(request_xmlHttp.readyState==4)
+	{
+  		var ack=request_xmlHttp.responseText;	
+		var MQ2 = document.getElementById('MQ2');
+		MQ2.value=ack;
+	}
 }
 function updatelistNet()
 {
@@ -167,6 +224,22 @@ function updateUser()
 	userId.value=ack[1];
 	emailId.value=ack[2];
 	passwd.value='';
+	alert('修改成功!');
+	}
+}
+function updatelistUser()
+{
+	
+	if(request_xmlHttp.readyState==4)
+	{
+  	var data=request_xmlHttp.responseText;	
+	var ack=data.split(':');
+	var userId=document.getElementById('user');
+	var emailId=document.getElementById('email');
+	var passwd=document.getElementById('passwd');
+	userId.value=ack[1];
+	emailId.value=ack[2];
+	passwd.value='';
 	}
 }
 function isIPa(strIP) {
@@ -225,4 +298,35 @@ function set_defaultNet()
 	ip.value="192.168.1.8";
 	netmask.value="255.255.255.0";
 	gateway.value="192.168.1.1";
+}
+function set_defaultMQ2()
+{
+	var MQ2=document.getElementById('MQ2');
+	MQ2.value='29';
+}
+function change_boxColor()
+{
+	var boxId = document.getElementById('eBox');
+	var hint = document.getElementById('MQ2hint');
+	var hint2 = document.getElementById('MQ2hint2');
+	var comment = document.getElementById('Mcomment');
+	if(boxId.checked==true)
+	{
+		hint.style.color='yellow';
+		hint2.style.color='yellow';
+		comment.style.color='green';
+	}
+	else
+	{
+		hint.style.color='gray';
+		hint2.style.color='gray';
+		comment.style.color='gray';
+	}
+}
+function sendEmail()	
+{
+		if(confirm("发送密码到邮箱?"))	
+		{
+			alert("发送成功!");	
+		}
 }

@@ -19,6 +19,7 @@ int temp_getCurrent()
 	fp = popen(cmd,"r");
 	if(fgets(temp_buf,TEMP_SIZE-1,fp) == NULL)
 		return -1;
+	
 	return atoi(temp_buf);
 }
 int temp_isZone(int min,int max)

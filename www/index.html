@@ -4,10 +4,13 @@
 	<title>Intellect Hub</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<link href="css/personal.css" rel="stylesheet" type="text/css">
+	<link href="css/sheet.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/cookie.js"></script>
 	<script type="text/javascript" src="ajax/switch.js"></script>
 	<script type="text/javascript" src="ajax/list_dev.js"></script>
 	<script type="text/javascript" src="ajax/session.js"></script>
+	<script type="text/javascript" src="ajax/current.js"></script>
 	<script> check_session()</script>
 </head>
 
@@ -50,6 +53,8 @@
 		refresh_dev();
 	</script>
 	</div>
+	<label class="hint">说明:点击灯泡可控制插座开关,灯泡亮表示插座开，反之关。
+	灯泡下显示的是当前插座上的设备,"null"表示无设备或不带标签的设备。</label>
 </div>
 <!-- sidebar gadget -->
   <div class="gadget">
@@ -61,6 +66,12 @@
         <li><a href="device.html">设备管理</a></li>
         <li><a href="personal.html">个人中心</a></li>
 		</ul>
+		<label class="sideHint">当前温度:</label>
+		<label id="currTemp" class="sideHint"></label></br>
+		<label class="sideHint">烟雾浓度:</label>
+		<label id="currMQ2" class="sideHint"></label>
+		<script>call_currTemp()</script>
+		<script>call_currMQ2()</script>
   </div>
 <!-- footer -->
   <div class="footer">

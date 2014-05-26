@@ -313,3 +313,25 @@ int dev_modifyNet(sqlite3 *db,char *ip,char *netmask,char *gateway)
 	}
 	return 0;
 }
+int dev_getMQ2(sqlite3 *db,char *outMQ2,char *enable)
+{
+	int ret,ret2;
+	ret = dev_select(db,"MQ2_tb","MQ2","id","1",outMQ2);		
+	ret2 = dev_select(db,"MQ2_tb","enable","id","1",enable);		
+	if(ret < 0||ret2 < 0) 
+	{
+		return -1;	
+	}
+	return 0;
+}
+int dev_modifyMQ2(sqlite3 *db,char *inMQ2,char *enable)
+{
+	int ret,ret2;
+	ret = dev_update(db,"MQ2_tb","MQ2",inMQ2,"id","1");		
+	ret2 = dev_update(db,"MQ2_tb","enable",enable,"id","1");		
+	if(ret < 0||ret2 < 0) 
+	{
+		return -1;	
+	}
+	return 0;
+}
