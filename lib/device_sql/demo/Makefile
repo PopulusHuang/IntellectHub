@@ -1,7 +1,11 @@
-OBJS=devicesql_test.o devicesql.o
+OBJS=devicesql_test.o
 DIR=$(shell pwd)/../../
-INC=-I$(DIR)/../include
-CFLAGS= $(INC) -g -lsqlite3
+
+INCS=-I$(DIR)/../include
+LIBPATH=-L$(DIR)
+LIBS=-lsqlite3 -ldevicesql
+CFLAGS= $(INCS) $(LIBPATH) $(LIBS) -g
+CC=gcc
 test:$(OBJS)
 	$(CC) -o $@ $(OBJS) $(CFLAGS)
 clean:

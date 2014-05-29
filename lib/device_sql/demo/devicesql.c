@@ -127,10 +127,12 @@ int dev_modify(sqlite3 *db,char *table,char *id,
 	char *err = 0;
 	char *zErrMsg = NULL;
 	char **aResult;
-
+	int n,n2;
 	memset(sql,0,sizeof(sql));
-	dev_update(db,table,"dev_name",dev_name,"id",id);
-	dev_update(db,table,"dev_power",dev_power,"id",id);
+	n = dev_update(db,table,"dev_name",dev_name,"id",id);
+	n2 = dev_update(db,table,"dev_power",dev_power,"id",id);
+	if(n < 0||n2 < 0)
+		return -1;
 #if 0
 	sprintf(sql,"update %s set dev_name='%s' where id='%s'"
 			,table,dev_name,id);
@@ -240,7 +242,7 @@ int dev_update(sqlite3 *db,char *table,
 	{
 		fprintf(stderr,"SQL error:%s\n",zErrMsg);	
 		sqlite3_free(zErrMsg);
-		printf("-1");
+		//printf("-1");
 		return -1;
 	}
 	return 0;
@@ -308,6 +310,28 @@ int dev_modifyNet(sqlite3 *db,char *ip,char *netmask,char *gateway)
 	ret2=dev_update(db,"net_tb","netmask",netmask,"id","1");	
 	ret3=dev_update(db,"net_tb","gateway",gateway,"id","1");	
 	if(ret1 < 0||ret2 < 0 ||ret3 < 0)
+	{
+		return -1;	
+	}
+	return 0;
+}
+int dev_getMQ2(sqlite3 *db,char *outMQ2,char *enable)
+{
+	int ret,ret2;
+	ret = dev_select(db,"MQ2_tb","MQ2","id","1",outMQ2);		
+	ret2 = dev_select(db,"MQ2_tb","enable","id","1",enable);		
+	if(ret < 0||ret2 < 0) 
+	{
+		return -1;	
+	}
+	return 0;
+}
+int dev_modifyMQ2(sqlite3 *db,char *inMQ2,char *enable)
+{
+	int ret,ret2;
+	ret = dev_update(db,"MQ2_tb","MQ2",inMQ2,"id","1");		
+	ret2 = dev_update(db,"MQ2_tb","enable",enable,"id","1");		
+	if(ret < 0||ret2 < 0) 
 	{
 		return -1;	
 	}

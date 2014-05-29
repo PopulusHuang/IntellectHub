@@ -13,8 +13,8 @@ typedef struct hubtime{
 typedef struct hubtask{
 	char Lvalue[VALUE_SIZE];
 	char Rvalue[VALUE_SIZE];
-	char switch_opt[2];
-	char enable[2];
+	char switch_opt[5];
+	char enable[5];
 }HUB_TASK;
 
 int dev_update(sqlite3 *db,char *table,
@@ -29,9 +29,10 @@ int dev_register(sqlite3 *db,const char *id,
 				const char *dev_name,
 				const char *dev_power);
 
-int dev_modify(sqlite3 *db,char *table,char *id,
-			   char*dev_name,
-			   char *dev_power);
+int dev_modify(sqlite3 *db,char *table,
+				char *id, char*dev_name, 
+				char *dev_power);
+
 int dev_remove(sqlite3 *db,char *id);
 int dev_sheet_list(sqlite3 *db);
 int dev_current_list(sqlite3 *db);

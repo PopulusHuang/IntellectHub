@@ -104,7 +104,7 @@ int main(void)
 
 	
 	printf("read_card...\n");
-	ret = sqlite3_open("../../www/cgi-bin/data/devices.db",&db);
+	ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/devices.db",&db);
 
 	if(ret != SQLITE_OK)
 	{
@@ -114,16 +114,17 @@ int main(void)
 	}
 	char cardID[10];
 	char dev_name[30];
-
+	char hub[4];
 	int n;
 	memset(cardID,0,sizeof(cardID));
 	memset(dev_name,0,sizeof(dev_name));
+	memset(hub,0,sizeof(hub));
 	while(1)
 	{
 		for(i = 0;i < 3;i++)
 		{
 			read_card(serialfd,i,cardID);
-			printf("%s\n",cardID);
+		//	printf("%s\n",cardID);
 
 			if((strcmp(cardID,"FF") == 0)||(strcmp(cardID,"") == 0)) //has no card
 			{
@@ -143,7 +144,9 @@ int main(void)
 				}
 			}
 			/* update the current devices */
-			dev_update(db,i+1,cardID,dev_name);	
+			sprintf(hub,"%d",i+1);
+			dev_update(db,"currdev_tb","id",cardID,"hub",hub);	
+			dev_update(db,"currdev_tb","dev_name",dev_name,"hub",hub);	
 
 			memset(cardID,0,sizeof(cardID));
 			memset(dev_name,0,sizeof(dev_name));

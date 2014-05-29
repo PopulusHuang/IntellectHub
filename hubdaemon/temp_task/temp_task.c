@@ -7,30 +7,19 @@
 #define TEMP_SIZE 5
 #define IN_ZONE 1
 #define OUT_ZONE 0
-int temp_getCurrent()
+int temp_getCurrent(sqlite3 *db,char *currtemp)
 {
-	FILE *fp;
-	char cmd[BUF_SIZE];
-	char temp_buf[TEMP_SIZE];
-
-	memset(cmd,0,sizeof(cmd));
-	memset(temp_buf,0,sizeof(temp_buf));
-	sprintf(cmd,"./get_temp");
-	fp = popen(cmd,"r");
-	if(fgets(temp_buf,TEMP_SIZE-1,fp) == NULL)
-		return -1;
-	
-	return atoi(temp_buf);
+	int n;
+	n = dev_select(db,"currtemp_tb","temp","id","1",currtemp);
+	return n;
 }
-int temp_isZone(int min,int max)
+int temp_isZone(int min,int max,int currtemp)
 {
-	int curr = 0;	
-	curr = temp_getCurrent(); 
-	if( curr >= min && curr <= max)
+	if( currtemp >= min && currtemp <= max)
 		return IN_ZONE;	
 	return OUT_ZONE;
 }
-int temp_hubtask(HUB_TASK *task,int hubId)
+int temp_hubtask(HUB_TASK *task,int hubId,char *currtemp)
 {
 	int switch_opt; /* 0:trun off switch 1:turn on switch*/
 	int temp_zone;
@@ -43,39 +32,44 @@ int temp_hubtask(HUB_TASK *task,int hubId)
 	switch_opt = atoi(task[hubId].switch_opt);
 	min_temp = atoi(task[hubId].Lvalue);
 	max_temp = atoi(task[hubId].Rvalue);
-	temp_zone = temp_isZone(min_temp,max_temp);
+	temp_zone = temp_isZone(min_temp,max_temp,atoi(currtemp));
 
 	if(temp_zone == IN_ZONE)
 		switch_detect(pin,switch_opt);
 	return 0;	
 }
 
-int temp_run() 
+int temp_run(sqlite3 *db,char *currtemp) 
 {
 	HUB_TASK task[3];	
 	int i;	
+	memset(task,0,sizeof(task));
+	for(i = 0;i < 3;i++)		
+	{
+		dev_getTask(db,"temp_tb",task,i);
+		temp_hubtask(task,i,currtemp);
+		memset(task,0,sizeof(task));
+		sleep(1);
+	}
+}
+int main(void)
+{
 	sqlite3 *db;
-
-	int ret = sqlite3_open("../../www/cgi-bin/data/devices.db",&db);
+	char currtemp[5];
+	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/currdev.db",&db);
 
 	if(ret != SQLITE_OK)
 	{
 		fputs(sqlite3_errmsg(db),stderr);
 		exit(1);
 	}
-	memset(task,0,sizeof(task));
-	for(i = 0;i < 3;i++)		
+	while(1)
 	{
-		dev_getTask(db,"temp_tb",task,i);
-		temp_hubtask(task,i);
+		temp_getCurrent(db,currtemp);
+		//printf("current tempurater=%s\n",currtemp);
+		temp_run(db,currtemp);
 		sleep(1);
 	}
-}
-int main(void)
-{
-	int currtemp = temp_getCurrent();
-
-	printf("current tempurater=%d\n",currtemp);
-	temp_run();
+	sqlite3_colse(db);
 	return 0;
 }

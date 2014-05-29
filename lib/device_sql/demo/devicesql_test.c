@@ -18,8 +18,12 @@ int main(void)
 		fputs("\n",stderr);
 		exit(1);
 	}
-	dev_getNet(db,ip,netmask,gateway);
-	printf("ip:%s netmask:%s gateway:%s\n",ip,netmask,gateway);
+	if(dev_modify(db,"device_tb","4d1d13e0","电视","88")<0)
+	{
+		printf("modify error!");	
+		exit(0);
+	}
+	dev_sheet_list(db);
 	sqlite3_close(db);
 	return 0;
 }

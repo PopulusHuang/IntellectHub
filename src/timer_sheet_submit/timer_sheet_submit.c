@@ -10,7 +10,7 @@ int cgiMain()
 	int i,n;
 	int ret;
 	char id_buf[10];
-	char inputStr[2][VALUE_SIZE];
+	char inputStr[2][VALUESIZE];
 	char switch_buf[5];
 	char enable_buf[5];
 	char cmd[BUF_SIZE];
@@ -32,19 +32,23 @@ int cgiMain()
 		exit(1);
 	}
 	/* cgic header */
+#if 1
     cgiHeaderContentType("text/plain");
 	cgiFormString("hub_id",id_buf,10);
-	cgiFormString("inputVal",inputStr[0],VALUE_SIZE-1);
-	cgiFormString("inputVal2",inputStr[1],VALUE_SIZE-1);
+	cgiFormString("inputVal",inputStr[0],VALUESIZE-1);
+	cgiFormString("inputVal2",inputStr[1],VALUESIZE-1);
 	cgiFormString("switch_opt",switch_buf,5);
 	cgiFormString("enableBox",enable_buf,5);
+#endif
 	int hub_id=atoi(id_buf);
+	system("chmod -R 777 data");
 	n=sheet_row_modify(db,"timer_tb",hub_id,inputStr,switch_buf,enable_buf);
 	/*update sheet*/
 	if(n==0)
 	{
 		dev_getNameByHub(db,hub_id,dev_name);
 		sheet_row_show(db,"timer_tb",hub_id,dev_name);
+		printf("update\n");
 	}
 	else
 		printf("-1");

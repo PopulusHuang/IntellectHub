@@ -19,7 +19,6 @@ function call_submit(row,cgi_name)
 	var endTime = inputId2.value;
 
 	var url="../cgi-bin/"+cgi_name+".cgi?hub_id="+escape(row)+"&dev_name="+escape(devId.innerHTML)+"&inputVal="+escape(startTime)+"&inputVal2="+escape(endTime)+"&switch_opt="+escape(switch_opt)+"&enableBox="+escape(enable_flg);
-
 	request_xmlHttp.open("GET",url,true);
 	request_xmlHttp.onreadystatechange=updateSheet;
 	request_xmlHttp.send(null);
@@ -59,7 +58,7 @@ function call_devSubmit(row)
 		cmd='DEL';
 	else
 		cmd='MOD';
-	
+
 	var url="../cgi-bin/device_manage.cgi?cmd="+escape(cmd)+"&dev_id="+escape(dev_id.innerHTML)+"&dev_name="+encodeURI(dev_name.value)+"&dev_power="+escape(dev_power.value);
 	request_xmlHttp.open("GET",url,true);
 	request_xmlHttp.onreadystatechange=updateDevices;
@@ -89,7 +88,10 @@ function updateDevices()
 	  	var data=request_xmlHttp.responseText;	
 		var dev_tb=document.getElementById('dev_tbId');
 		if(data=='-1')
+		{
 			alert('提交失败!');
+			return -1;
+		}
 		else if(DEV_MOD_SUBMIT == true)
 		{
 			alert('提交成功!');
@@ -98,7 +100,6 @@ function updateDevices()
 		dev_tb.innerHTML=data;
 	}
 }
-
 function updateSheet()
 {
 	if(request_xmlHttp.readyState==4)

@@ -7,7 +7,7 @@ CGIDIR=$(DIR)/www/cgi-bin/
 LIBPATH=-L$(DIR)/lib
 INCPATH=-I$(DIR)/include
 
-LIBS=-lcgic -lsqlite3 -ldevicesql
+LIBS=-lcgic -lsqlite3  -ldevicesql
 app=$(CGIDIR)$(orignal).cgi
 
 CFLAGS=$(LIBPATH) $(INCPATH) $(LIBS) 

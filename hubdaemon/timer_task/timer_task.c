@@ -19,6 +19,7 @@ int timer_getCurrent(HUB_TIME *curr_time)
 	fp = popen(cmd,"r");
 	if(fgets(buf,BUF_SIZE-1,fp) == NULL)
 		return -1;
+
 	sscanf(buf,"%d-%d-%d/%d:%d",
 			&curr_time->mon,&curr_time->day,&curr_time->year,
 			&curr_time->hour,&curr_time->min);
@@ -113,33 +114,35 @@ int timer_hubtask(HUB_TASK *task,int hubId)
 	return 0;	
 }
 
-int timer_run() 
+int timer_run(sqlite3 *db) 
 {
 	HUB_TASK task[3];	
 	int i;	
+	memset(task,0,sizeof(task));
+	for(i = 0;i < 3;i++)		
+	{
+		dev_getTask(db,"timer_tb",task,i);
+		timer_hubtask(task,i);
+		memset(task,0,sizeof(task));
+		sleep(1);
+	}
+}
+int main(int argc,char **argv)
+{
 	sqlite3 *db;
 
-	int ret = sqlite3_open("../../www/cgi-bin/data/devices.db",&db);
+	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/devices.db",&db);
 
 	if(ret != SQLITE_OK)
 	{
 		fputs(sqlite3_errmsg(db),stderr);
 		exit(1);
 	}
-	memset(task,0,sizeof(task));
-	for(i = 0;i < 3;i++)		
-	{
-		dev_getTask(db,"timer_tb",task,i);
-		timer_hubtask(task,i);
-	}
-	sleep(1);
-}
-int main(int argc,char **argv)
-{
 	while(1)
 	{
-		timer_run();
+		timer_run(db);
 		sleep(1);
 	}
+	sqlite3_close(db);
 	return 0;
 }

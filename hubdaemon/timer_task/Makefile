@@ -7,7 +7,7 @@ LIBPATH=-L$(DIR)/lib/
 LIBS= -lsqlite3 -lgpio -ldevicesql  
 
 CFLAGS= $(INCS) $(LIBPATH) $(LIBS) -g
-TARGET = $(ORG)
+TARGET = /home/ubuntu/daemond/$(ORG)
 $(TARGET):$(OBJ)
 	$(CC)  -o $@  $(OBJ) $(CFLAGS)
 clean:

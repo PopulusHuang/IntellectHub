@@ -14,7 +14,7 @@ int cgiMain()
     cgiHeaderContentType("text/plain");
   /* open database */ 
   	sqlite3 *db;
-	int ret = sqlite3_open("data/devices.db",&db);
+	int ret = sqlite3_open("data/currdev.db",&db);
 	if(ret != SQLITE_OK)
 	{
 		fputs(sqlite3_errmsg(db),stderr);
