@@ -7,10 +7,19 @@
 #define TEMP_SIZE 5
 #define IN_ZONE 1
 #define OUT_ZONE 0
-int temp_getCurrent(sqlite3 *db,char *currtemp)
+int temp_getCurrent(char *currtemp)
 {
 	int n;
+	sqlite3 *db;
+	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/currdev.db",&db);
+
+	if(ret != SQLITE_OK)
+	{
+		fputs(sqlite3_errmsg(db),stderr);
+		exit(1);
+	}
 	n = dev_select(db,"currtemp_tb","temp","id","1",currtemp);
+	sqlite3_close(db);
 	return n;
 }
 int temp_isZone(int min,int max,int currtemp)
@@ -56,7 +65,7 @@ int main(void)
 {
 	sqlite3 *db;
 	char currtemp[5];
-	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/currdev.db",&db);
+	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/devices.db",&db);
 
 	if(ret != SQLITE_OK)
 	{
@@ -65,7 +74,7 @@ int main(void)
 	}
 	while(1)
 	{
-		temp_getCurrent(db,currtemp);
+		temp_getCurrent(currtemp);
 		//printf("current tempurater=%s\n",currtemp);
 		temp_run(db,currtemp);
 		sleep(1);

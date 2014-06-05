@@ -35,15 +35,19 @@ void show_DefaultErr()
 	printf("<script>alert(\"Forbid login!\")</script>\n");
 	printf("<script> location.href=\"../login.html\"; </script>");
 }
+void check_daemond()
+{
+	system("/home/ubuntu/check_daemond &");
+}
 int cgiMain() {
 	ACCOUNT user;
 	int n;
 	int ret;
     if(session_start() < 0)
     {
-	perror("session start");
-//	exit(1);
+		perror("session start");
     }
+	check_daemond();
     cgiHeaderContentType("text/html");
     cgiFormString("name",user.name, 241);
     cgiFormString("passwd",user.passwd, 241);

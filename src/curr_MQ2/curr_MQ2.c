@@ -46,6 +46,10 @@ int cgiMain()
 	dev_select(db,"currtemp_tb","temp","id","1",temp);
 //	getCurrentTemp(db,temp);
 	int currMQ2=getCurrentMQ2();
+	if(currMQ2 > atoi(MQ2))
+	{
+		system("./daemond/buzzer");	
+	}
 	printf("%d:%s:%s°C",currMQ2,MQ2,temp);
 	return 0;
 }

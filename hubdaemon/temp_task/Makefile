@@ -1,13 +1,14 @@
-ORG = temp_task
-OBJ = $(ORG).o  gpio.o
-CC = gcc
+ORG=temp_task
+OBJ=$(ORG).o  gpio.o devicesql.o
+CC=gcc
 DIR=$(shell pwd)/../../
 INCS=-I$(DIR)/include/
 LIBPATH=-L$(DIR)/lib/
-LIBS= -lsqlite3  -ldevicesql  
+LIBS=-lsqlite3  #-ldevicesql  
 
 CFLAGS= $(INCS) $(LIBPATH) $(LIBS) -g
-TARGET = /home/ubuntu/daemond/$(ORG)
+TARGET=/home/ubuntu/daemond/$(ORG)
+#TARGET=./$(ORG)
 $(TARGET):$(OBJ)
 	$(CC)  -o $@  $(OBJ) $(CFLAGS)
 clean:

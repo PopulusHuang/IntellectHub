@@ -10,7 +10,7 @@ int getCurrentTemp(char *temp_buf)
 	char cmd[BUF_SIZE];
 
 	memset(cmd,0,sizeof(cmd));
-	sprintf(cmd,"./get_temp");
+	sprintf(cmd,"/home/ubuntu/daemond/get_temp");
 	fp = popen(cmd,"r");
 	if(fgets(temp_buf,TEMP_SIZE-1,fp) == NULL)
 		return -1;

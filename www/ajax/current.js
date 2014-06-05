@@ -21,8 +21,8 @@ function updateCurrMQ2()
 		var valve = parseInt(data[1]);
 		if(currdata > valve)
 		{
-		//	alert('烟雾警报!');	
-			alert(data);
+			alert('烟雾警报!');	
+		//	alert(data);
 		}
 		currMQ2.innerHTML=data[0];
 		currTemp.innerHTML=data[2];

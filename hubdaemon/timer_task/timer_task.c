@@ -114,21 +114,10 @@ int timer_hubtask(HUB_TASK *task,int hubId)
 	return 0;	
 }
 
-int timer_run(sqlite3 *db) 
+int timer_run() 
 {
 	HUB_TASK task[3];	
 	int i;	
-	memset(task,0,sizeof(task));
-	for(i = 0;i < 3;i++)		
-	{
-		dev_getTask(db,"timer_tb",task,i);
-		timer_hubtask(task,i);
-		memset(task,0,sizeof(task));
-		sleep(1);
-	}
-}
-int main(int argc,char **argv)
-{
 	sqlite3 *db;
 
 	int ret = sqlite3_open("/var/intellect_hub/www/cgi-bin/data/devices.db",&db);
@@ -138,11 +127,23 @@ int main(int argc,char **argv)
 		fputs(sqlite3_errmsg(db),stderr);
 		exit(1);
 	}
-	while(1)
+	memset(task,0,sizeof(task));
+	for(i = 0;i < 3;i++)		
 	{
-		timer_run(db);
+		dev_getTask(db,"timer_tb",task,i);
+		timer_hubtask(task,i);
+		memset(task,0,sizeof(task));
 		sleep(1);
 	}
 	sqlite3_close(db);
+	return 0;
+}
+int main(int argc,char **argv)
+{
+	while(1)
+	{
+		timer_run();
+		sleep(2);
+	}
 	return 0;
 }
