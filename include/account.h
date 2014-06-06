@@ -23,4 +23,5 @@ int account_verify_passwd(sqlite3 *db,char *passwd);
 int account_modify_passwd(sqlite3 *db,char *username,char *passwd);
 int account_modify_user(sqlite3 *db,char *username,char *email,char *passwd);
 int account_get_user(sqlite3 *db,char *username,char *email);
+int account_get_passwd(sqlite3 *db,char *user,char *passwd);
 #endif

@@ -59,7 +59,32 @@ int account_get_user(sqlite3 *db,char *user,char *email)
 	}
 	strcpy(user,aResult[2]);
 	strcpy(email,aResult[3]);
+	sqlite3_free_table(aResult);
 	return 0;
+}
+int account_get_passwd(sqlite3 *db,char *user,char *passwd)
+{
+	char sql[BUF_SIZE];	/* SQL sentene */	
+	int ret;
+	int row,col;
+	char *err = 0;
+	char **aResult;
+
+	sprintf(sql,"select passwd,name from user_tb where name='%s';",user);
+	/* sqlite3 query, the result are stored in a array 
+	 * which was the 'aResult' point to*/
+	sqlite3_get_table(db,sql,&aResult,&row,&col,&err);
+	int i;
+
+	if(row == 0||col ==0) /* empty result */
+	{
+		return -1;
+	}
+	strcpy(passwd,aResult[2]);
+	//strcpy(user,aResult[3]);
+	sqlite3_free_table(aResult);
+	return 0;
+
 }
 int account_verify_passwd(sqlite3 *db,char *passwd)
 {
@@ -79,6 +104,7 @@ int account_verify_passwd(sqlite3 *db,char *passwd)
 	{
 		return PASSWD_ERR;
 	}
+	sqlite3_free_table(aResult);
 	return PASSWD_OK;
 }
 int account_modify_user(sqlite3 *db,char *username,char *email,char *passwd)

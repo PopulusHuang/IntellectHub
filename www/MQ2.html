@@ -44,10 +44,10 @@
    
 <!--content-->
 <div class="content">
-	<label id="MQ2hint"class="Mhint">烟雾报警阀值:</label>
-	<input id="MQ2" style="width:30px;" value=""/><label id="Mcomment"class="Mcomment">(当实际值大于阀值时开始报警,有烟雾时感应值一般为29)</label> 
+	<label id="MQ2hint" style="color:yellow;"class="Mhint">烟雾报警阀值:</label>
+	<input id="MQ2" style="width:30px;" value=""/><label id="Mcomment"class="Mcomment" style="color:green;">(当实际值大于阀值时开始报警,有烟雾时感应值一般为29)</label> 
 	</br>
-			<label id="MQ2hint2"class="Mhint">启用烟雾报警</label>
+			<label id="MQ2hint2"class="Mhint">启用邮箱通知</label>
 			<input id="eBox" class="timer_btn" name="enableBox" onclick="change_boxColor()" type="checkbox"> </br>
     <input type="button"value="提交"class="timer_btn" onclick="call_updateMQ2()"/>
     <input type="button"value="恢复默认"class="timer_btn"  onclick="set_defaultMQ2()"/> 

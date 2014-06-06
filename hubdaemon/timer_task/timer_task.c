@@ -52,16 +52,16 @@ int timer_decideZone(int start,int end,int needle)
 	/* judge time zone */
 	if(start > end)   //time zone out a day e.g 23:00~02:00
 	{
-		if(needle < end || needle >=start)
+		if((needle < end )|| (needle >=start))
 			return IN_TIME_ZONE;
-		if(needle == end)
+		else if(needle == end)
 			return RIGHT_TIME_ZONE;
 	}
 	else  //in a day
 	{
-		if(needle >= start && needle < end   )	
+		if((needle >= start )&& (needle < end ))	
 			return IN_TIME_ZONE;
-		if(needle == end)
+		else if(needle == end)
 			return RIGHT_TIME_ZONE;
 	}
 	return OUT_TIME_ZONE;

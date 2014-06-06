@@ -312,21 +312,40 @@ function change_boxColor()
 	var comment = document.getElementById('Mcomment');
 	if(boxId.checked==true)
 	{
-		hint.style.color='yellow';
+//		hint.style.color='yellow';
 		hint2.style.color='yellow';
-		comment.style.color='green';
+//		comment.style.color='green';
 	}
 	else
 	{
-		hint.style.color='gray';
+//		hint.style.color='gray';
 		hint2.style.color='gray';
-		comment.style.color='gray';
+//		comment.style.color='gray';
 	}
 }
-function sendEmail()	
+function sendPasswd()	
 {
 		if(confirm("发送密码到邮箱?"))	
 		{
-			alert("发送成功!");	
+			if(request_xmlHttp==null)
+				request_ajax_init();
+
+			var url="../cgi-bin/send_passwd.cgi";	
+			request_xmlHttp.open("GET",url,true);
+			request_xmlHttp.onreadystatechange=updatesendPasswd;
+			request_xmlHttp.send(null);
 		}
+}
+function updatesendPasswd()
+{
+
+	if(request_xmlHttp.readyState==4)
+	{
+  		var ack=request_xmlHttp.responseText;	
+		if(ack=='0')
+			alert('密码已发送!');
+		else
+			alert('发送失败！');
+		window.location.href="login.html"
+	}
 }
